@@ -12,6 +12,28 @@ jobs:
   git-sync:
     runs-on: ubuntu-latest
 
+    strategy:
+      matrix:
+        branch:
+          - main
+          - v2.6-branch
+          - v2.5-branch
+          - v2.4-branch
+          - v2.3-branch
+          - v2.2-branch
+          - v2.1-branch
+          - v2.0-branch
+          - v1.14-branch
+          - v1.13-branch
+          - v1.12-branch
+          - v1.11-branch
+          - v1.10-branch
+          - v1.9-branch
+          - v1.8-branch
+          - v1.7-branch
+          - v1.6-branch
+          - v1.5-branch
+
     steps:
       - name: git-sync
         uses: wei/git-sync@v3
