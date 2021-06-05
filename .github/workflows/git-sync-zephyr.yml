@@ -37,10 +37,10 @@ jobs:
           - v1.5-branch
 
     steps:
-      - id: secstr
+      - id: repostr
         uses: ASzc/change-string-case-action@v1
         with:
-          string: secrets.SSH_PRIVATE_KEY_${{ matrix.repo }}
+          string: ${{ matrix.repo }}
 
       - name: git-sync
         uses: wei/git-sync@v3
@@ -49,4 +49,4 @@ jobs:
           source_branch: "${{ matrix.branch }}"
           destination_repo: "git@github.com:tiacsys/${{ matrix.repo }}.git"
           destination_branch: "${{ matrix.branch }}"
-          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY_ZEPHYR }}
+          ssh_private_key: ${{ format(secrets.SSH_PRIVATE_KEY_{0}, 'ZEPHYR') }}
