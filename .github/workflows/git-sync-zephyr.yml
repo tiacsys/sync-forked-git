@@ -1,7 +1,7 @@
 # Copyright (c) 2021 TiaC Systems
 # SPDX-License-Identifier: Apache-2.0
 
-name: Sync Zephyr Fork
+name: Sync Zephyr Project Forks
 
 on:
   schedule:
@@ -14,6 +14,8 @@ jobs:
 
     strategy:
       matrix:
+        repo:
+          - zephyr
         branch:
           - main
           - v2.6-branch
@@ -38,8 +40,8 @@ jobs:
       - name: git-sync
         uses: wei/git-sync@v3
         with:
-          source_repo: "git@github.com:zephyrproject-rtos/zephyr.git"
+          source_repo: "git@github.com:zephyrproject-rtos/${{ matrix.repo }}.git"
           source_branch: "${{ matrix.branch }}"
-          destination_repo: "git@github.com:tiacsys/zephyr.git"
+          destination_repo: "git@github.com:tiacsys/${{ matrix.repo }}.git"
           destination_branch: "${{ matrix.branch }}"
           ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
