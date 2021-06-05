@@ -15,22 +15,18 @@ jobs:
     strategy:
       matrix:
         repo:
-          - symbols
+          - kicad-symbols
         branch:
           - master
           - v5
 
     steps:
-      - id: repostr
-        uses: ASzc/change-string-case-action@v1
-        with:
-          string: ${{ matrix.repo }}
-
-      - name: git-sync
+      - name: git-sync-kicad-symbols
         uses: wei/git-sync@v3
         with:
-          source_repo: "https://gitlab.com/kicad/libraries/kicad-${{ matrix.repo }}.git"
+          source_repo: "https://gitlab.com/kicad/libraries/${{ matrix.repo }}.git"
           source_branch: "${{ matrix.branch }}"
-          destination_repo: "git@github.com:tiacsys/kicad-${{ matrix.repo }}.git"
+          destination_repo: "git@github.com:tiacsys/${{ matrix.repo }}.git"
           destination_branch: "${{ matrix.branch }}"
-          ssh_private_key: format('${{ secrets.SSH_PRIVATE_KEY_KICAD_{0} }}', 'SYMBOLS')
+          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY_KICAD_SYMBOLS }}
+        if: ${{ matrix.repo == 'kicad-symbols' }}

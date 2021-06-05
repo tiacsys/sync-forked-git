@@ -37,16 +37,12 @@ jobs:
           - v1.5-branch
 
     steps:
-      - id: repostr
-        uses: ASzc/change-string-case-action@v1
-        with:
-          string: ${{ matrix.repo }}
-
-      - name: git-sync
+      - name: git-sync-zephyr
         uses: wei/git-sync@v3
         with:
           source_repo: "git@github.com:zephyrproject-rtos/${{ matrix.repo }}.git"
           source_branch: "${{ matrix.branch }}"
           destination_repo: "git@github.com:tiacsys/${{ matrix.repo }}.git"
           destination_branch: "${{ matrix.branch }}"
-          ssh_private_key: format('${{ secrets.SSH_PRIVATE_KEY_{0} }}', 'ZEPHYR')
+          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY_ZEPHYR }}
+        if: ${{ matrix.repo == 'zephyr' }}
