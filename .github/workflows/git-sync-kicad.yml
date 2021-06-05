@@ -33,4 +33,4 @@ jobs:
           source_branch: "${{ matrix.branch }}"
           destination_repo: "git@github.com:tiacsys/kicad-${{ matrix.repo }}.git"
           destination_branch: "${{ matrix.branch }}"
-          ssh_private_key: ${{ steps.secstr.outputs.uppercase }}
+          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY_KICAD_SYMBOLS }}
