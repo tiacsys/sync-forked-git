@@ -21,6 +21,11 @@ jobs:
           - v5
 
     steps:
+      - id: repo
+        uses: ASzc/change-string-case-action@v1
+        with:
+          string: ${{ matrix.repo }}
+
       - name: git-sync
         uses: wei/git-sync@v3
         with:
@@ -28,4 +33,4 @@ jobs:
           source_branch: "${{ matrix.branch }}"
           destination_repo: "git@github.com:tiacsys/kicad-${{ matrix.repo }}.git"
           destination_branch: "${{ matrix.branch }}"
-          ssh_private_key: ${{ format('secrets.SSH_PRIVATE_KEY_KICAD_{0}', matrix.repo) }}
+          ssh_private_key: ${{ format('secrets.SSH_PRIVATE_KEY_KICAD_{0}', steps.repo.outputs.uppercase) }}
