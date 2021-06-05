@@ -1,7 +1,7 @@
 # Copyright (c) 2021 TiaC Systems
 # SPDX-License-Identifier: Apache-2.0
 
-name: Sync KiCAD Project Forks
+name: Sync KiCad Project Forks
 
 on:
   schedule:
