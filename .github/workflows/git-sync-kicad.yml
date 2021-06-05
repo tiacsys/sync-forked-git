@@ -19,16 +19,9 @@ jobs:
         branch:
           - master
           - v5
+          - v4-bb-5.0.0_stable
 
     steps:
-      - name: key-setup
-        run: |
-          if [[ ${{ matrix.repo }} == kicad-symbols ]]; then
-            echo "SSH_PRIVATE_KEY=${{ secrets.SSH_PRIVATE_KEY_KICAD_SYMBOLS }}" >> $GITHUB_ENV
-          else
-            echo "SSH_PRIVATE_KEY=${{ secrets.SSH_PRIVATE_KEY }}" >> $GITHUB_ENV
-          fi
-
       - name: git-sync
         uses: wei/git-sync@v3
         with:
@@ -36,4 +29,4 @@ jobs:
           source_branch: "${{ matrix.branch }}"
           destination_repo: "git@github.com:tiacsys/${{ matrix.repo }}.git"
           destination_branch: "${{ matrix.branch }}"
-          ssh_private_key: ${{ env.SSH_PRIVATE_KEY }}
+          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY_KICAD_SYMBOLS }}
