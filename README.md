@@ -4,7 +4,7 @@ Sync forked Git repositories with their origin.
 
 ---
 
-## Zephyr
+## [Zephyr](https://www.zephyrproject.org/)
 
 [![Sync Zephyr Project Forks](https://github.com/tiacsys/sync-forked-git/actions/workflows/git-sync-zephyr.yml/badge.svg)](https://github.com/tiacsys/sync-forked-git/actions/workflows/git-sync-zephyr.yml)
 
@@ -16,7 +16,7 @@ Sync forked Git repositories with their origin.
 
 ---
 
-## KiCad
+## [KiCad](https://www.kicad.org/)
 
 [![Sync KiCad Project Forks](https://github.com/tiacsys/sync-forked-git/actions/workflows/git-sync-kicad.yml/badge.svg)](https://github.com/tiacsys/sync-forked-git/actions/workflows/git-sync-kicad.yml)
 
