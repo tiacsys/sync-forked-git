@@ -4,9 +4,9 @@
 name: Sync Zephyr Project Forks
 
 on:
-  schedule:
-    - cron: '*/15 * * * *' # every 15 minutes
-  workflow_dispatch: # on button click
+  schedule: # At every minute past hour 0, 4, 8, 12, 16, and 20.
+    - cron: '* 0,4,8,12,16,20 * * *'
+  workflow_dispatch: # And manually on button click.
 
 jobs:
   git-sync:
