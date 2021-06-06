@@ -2,19 +2,39 @@
 
 Sync forked Git repositories with their origin.
 
-## Action Runners
+---
 
-### git-sync-zephyr.yml
+## Zephyr
 
-- https://github.com/zephyrproject-rtos/zephyr
+[![Sync Zephyr Project Forks](https://github.com/tiacsys/sync-forked-git/actions/workflows/git-sync-zephyr.yml/badge.svg)](https://github.com/tiacsys/sync-forked-git/actions/workflows/git-sync-zephyr.yml)
+
+- *from:* https://github.com/zephyrproject-rtos/zephyr
+
+  *to:* https://github.com/tiacsys/zephyr
+
   > The **Zephyr** Project's scalable real-time operating system **(RTOS)**.
 
-### git-sync-kicad.yml
+---
 
-- https://gitlab.com/kicad/libraries/kicad-symbols
+## KiCad
+
+[![Sync KiCad Project Forks](https://github.com/tiacsys/sync-forked-git/actions/workflows/git-sync-kicad.yml/badge.svg)](https://github.com/tiacsys/sync-forked-git/actions/workflows/git-sync-kicad.yml)
+
+- *from:* https://gitlab.com/kicad/libraries/kicad-symbols
+
+  *to:* https://github.com/tiacsys/kicad-symbols
+
   > The **KiCad symbol libraries** are the individual `.lib` files, with the
   > corresponding `.dcm` files containing symbol metadata.
-- https://gitlab.com/kicad/libraries/kicad-footprints
+
+- *from:* https://gitlab.com/kicad/libraries/kicad-footprints
+
+  *to:* https://github.com/tiacsys/kicad-footprints
+
   > The **KiCad footprint libraries** are the individual `.pretty` directories.
-- https://gitlab.com/kicad/libraries/kicad-packages3D
+
+- *from:* https://gitlab.com/kicad/libraries/kicad-packages3D
+
+  *to:* https://github.com/tiacsys/kicad-packages3D
+
   > The **KiCad 3D model libraries** are the individual `.3dshapes` directories.
