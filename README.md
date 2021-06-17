@@ -16,6 +16,18 @@ Sync forked Git repositories with their origin.
 
 ---
 
+## [Lua](https://www.lua.org/)
+
+[![Sync Lua Project Forks](https://github.com/tiacsys/sync-forked-git/actions/workflows/git-sync-lua.yml/badge.svg)](https://github.com/tiacsys/sync-forked-git/actions/workflows/git-sync-lua.yml)
+
+- *from:* https://github.com/lua/lua
+
+  *to:* https://github.com/tiacsys/lua
+
+  > The **Lua** Project's powerful, efficient, lightweight, embeddable scripting language.
+
+---
+
 ## [KiCad](https://www.kicad.org/)
 
 [![Sync KiCad Project Forks](https://github.com/tiacsys/sync-forked-git/actions/workflows/git-sync-kicad.yml/badge.svg)](https://github.com/tiacsys/sync-forked-git/actions/workflows/git-sync-kicad.yml)
