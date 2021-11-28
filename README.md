@@ -57,9 +57,20 @@ Sync forked Git repositories with their origin.
 
   > The **KiCad 3D model library sources** are the individual `.3dshapes` directories.
 
+- *from:* https://gitlab.com/kicad/libraries/kicad-library-utils
+
+  *to:* https://github.com/tiacsys/kicad-library-utils
+
+  > **check_symbol.py**: Script for checking [KLC](http://kicad.org/libraries/klc/) compliance of symbol files.
+
+  > **check_footprint.py**: Script for checking [KLC](http://kicad.org/libraries/klc/) compliance of footprint files.
+
+  > **check_3d_coverage.py**: Script for checking which KiCad footprints in a `.pretty` library have 3D models. It also shows unused 3D model files.
+
+  > **comparelibs.py**: Script to compare two versions of the same library. Used as part of the `kicad-symbols` CI.
+
 - *from:* https://gitlab.com/kicad/libraries/kicad-templates
 
   *to:* https://github.com/tiacsys/kicad-templates
 
-  > The **KiCad templates** are the individual project and worksheet template
-  > directories.
+  > The **KiCad templates** are the individual project and worksheet template directories.
