@@ -18,6 +18,7 @@ jobs:
           - kicad-symbols
           - kicad-footprints
           - kicad-packages3D
+          - kicad-packages3D-source
           - kicad-templates
         branch:
           - master
@@ -53,6 +54,16 @@ jobs:
           destination_branch: "${{ matrix.branch }}"
           ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY_KICAD_PACKAGES3D }}
         if: ${{ matrix.repo == 'kicad-packages3D' }}
+
+      - name: git-sync-kicad-packages3D-source
+        uses: wei/git-sync@v3
+        with:
+          source_repo: "https://gitlab.com/kicad/libraries/${{ matrix.repo }}.git"
+          source_branch: "${{ matrix.branch }}"
+          destination_repo: "git@github.com:tiacsys/${{ matrix.repo }}.git"
+          destination_branch: "${{ matrix.branch }}"
+          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY_KICAD_PACKAGES3D_SOURCE }}
+        if: ${{ matrix.repo == 'kicad-packages3D-source' }}
 
       - name: git-sync-kicad-templates
         uses: wei/git-sync@v3

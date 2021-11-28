@@ -51,6 +51,12 @@ Sync forked Git repositories with their origin.
 
   > The **KiCad 3D model libraries** are the individual `.3dshapes` directories.
 
+- *from:* https://gitlab.com/kicad/libraries/kicad-packages3D-source
+
+  *to:* https://github.com/tiacsys/kicad-packages3D-source
+
+  > The **KiCad 3D model library sources** are the individual `.3dshapes` directories.
+
 - *from:* https://gitlab.com/kicad/libraries/kicad-templates
 
   *to:* https://github.com/tiacsys/kicad-templates
