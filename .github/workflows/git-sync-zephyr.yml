@@ -18,6 +18,7 @@ jobs:
           - zephyr
         branch:
           - main
+          - v3.0-branch
           - v2.7-auditable-branch
           - v2.7-branch
           - v2.6-branch
