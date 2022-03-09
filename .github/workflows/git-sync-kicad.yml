@@ -24,6 +24,7 @@ jobs:
         branch:
           - master
           - v5
+          - "refs/tags/*"
 
     steps:
       - name: git-sync-kicad-symbols
@@ -33,16 +34,6 @@ jobs:
           source_branch: "${{ matrix.branch }}"
           destination_repo: "git@github.com:tiacsys/${{ matrix.repo }}.git"
           destination_branch: "${{ matrix.branch }}"
-          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY_KICAD_SYMBOLS }}
-        if: ${{ matrix.repo == 'kicad-symbols' }}
-
-      - name: git-sync-kicad-symbols-tags
-        uses: wei/git-sync@v3
-        with:
-          source_repo: "https://gitlab.com/kicad/libraries/${{ matrix.repo }}.git"
-          source_branch: "refs/tags/*"
-          destination_repo: "git@github.com:tiacsys/${{ matrix.repo }}.git"
-          destination_branch: "refs/tags/*"
           ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY_KICAD_SYMBOLS }}
         if: ${{ matrix.repo == 'kicad-symbols' }}
 
@@ -56,16 +47,6 @@ jobs:
           ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY_KICAD_FOOTPRINTS }}
         if: ${{ matrix.repo == 'kicad-footprints' }}
 
-      - name: git-sync-kicad-footprints-tags
-        uses: wei/git-sync@v3
-        with:
-          source_repo: "https://gitlab.com/kicad/libraries/${{ matrix.repo }}.git"
-          source_branch: "refs/tags/*"
-          destination_repo: "git@github.com:tiacsys/${{ matrix.repo }}.git"
-          destination_branch: "refs/tags/*"
-          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY_KICAD_FOOTPRINTS }}
-        if: ${{ matrix.repo == 'kicad-footprints' }}
-
       - name: git-sync-kicad-packages3D
         uses: wei/git-sync@v3
         with:
@@ -73,16 +54,6 @@ jobs:
           source_branch: "${{ matrix.branch }}"
           destination_repo: "git@github.com:tiacsys/${{ matrix.repo }}.git"
           destination_branch: "${{ matrix.branch }}"
-          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY_KICAD_PACKAGES3D }}
-        if: ${{ matrix.repo == 'kicad-packages3D' }}
-
-      - name: git-sync-kicad-packages3D-tags
-        uses: wei/git-sync@v3
-        with:
-          source_repo: "https://gitlab.com/kicad/libraries/${{ matrix.repo }}.git"
-          source_branch: "refs/tags/*"
-          destination_repo: "git@github.com:tiacsys/${{ matrix.repo }}.git"
-          destination_branch: "refs/tags/*"
           ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY_KICAD_PACKAGES3D }}
         if: ${{ matrix.repo == 'kicad-packages3D' }}
 
@@ -96,16 +67,6 @@ jobs:
           ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY_KICAD_PACKAGES3D_SOURCE }}
         if: ${{ matrix.repo == 'kicad-packages3D-source' }}
 
-      - name: git-sync-kicad-packages3D-source-tags
-        uses: wei/git-sync@v3
-        with:
-          source_repo: "https://gitlab.com/kicad/libraries/${{ matrix.repo }}.git"
-          source_branch: "refs/tags/*"
-          destination_repo: "git@github.com:tiacsys/${{ matrix.repo }}.git"
-          destination_branch: "refs/tags/*"
-          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY_KICAD_PACKAGES3D_SOURCE }}
-        if: ${{ matrix.repo == 'kicad-packages3D-source' }}
-
       - name: git-sync-kicad-library-utils
         uses: wei/git-sync@v3
         with:
@@ -116,16 +77,6 @@ jobs:
           ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY_KICAD_LIBRARY_UTILS }}
         if: ${{ matrix.repo == 'kicad-library-utils' }}
 
-      - name: git-sync-kicad-library-utils-tags
-        uses: wei/git-sync@v3
-        with:
-          source_repo: "https://gitlab.com/kicad/libraries/${{ matrix.repo }}.git"
-          source_branch: "refs/tags/*"
-          destination_repo: "git@github.com:tiacsys/${{ matrix.repo }}.git"
-          destination_branch: "refs/tags/*"
-          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY_KICAD_LIBRARY_UTILS }}
-        if: ${{ matrix.repo == 'kicad-library-utils' }}
-
       - name: git-sync-kicad-templates
         uses: wei/git-sync@v3
         with:
@@ -133,15 +84,5 @@ jobs:
           source_branch: "${{ matrix.branch }}"
           destination_repo: "git@github.com:tiacsys/${{ matrix.repo }}.git"
           destination_branch: "${{ matrix.branch }}"
-          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY_KICAD_TEMPLATES }}
-        if: ${{ matrix.repo == 'kicad-templates' }}
-
-      - name: git-sync-kicad-templates-tags
-        uses: wei/git-sync@v3
-        with:
-          source_repo: "https://gitlab.com/kicad/libraries/${{ matrix.repo }}.git"
-          source_branch: "refs/tags/*"
-          destination_repo: "git@github.com:tiacsys/${{ matrix.repo }}.git"
-          destination_branch: "refs/tags/*"
           ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY_KICAD_TEMPLATES }}
         if: ${{ matrix.repo == 'kicad-templates' }}
