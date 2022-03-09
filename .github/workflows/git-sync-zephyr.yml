@@ -38,6 +38,7 @@ jobs:
           - v1.7-branch
           - v1.6-branch
           - v1.5-branch
+          - "refs/tags/*"
 
     steps:
       - name: git-sync-zephyr
@@ -47,15 +48,5 @@ jobs:
           source_branch: "${{ matrix.branch }}"
           destination_repo: "git@github.com:tiacsys/${{ matrix.repo }}.git"
           destination_branch: "${{ matrix.branch }}"
-          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY_ZEPHYR }}
-        if: ${{ matrix.repo == 'zephyr' }}
-
-      - name: git-sync-zephyr-tags
-        uses: wei/git-sync@v3
-        with:
-          source_repo: "git@github.com:zephyrproject-rtos/${{ matrix.repo }}.git"
-          source_branch: "refs/tags/*"
-          destination_repo: "git@github.com:tiacsys/${{ matrix.repo }}.git"
-          destination_branch: "refs/tags/*"
           ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY_ZEPHYR }}
         if: ${{ matrix.repo == 'zephyr' }}
