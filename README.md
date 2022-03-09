@@ -16,6 +16,18 @@ Sync forked Git repositories with their origin.
 
 ---
 
+## [QP/C](https://www.state-machine.com/products/qp)
+
+[![Sync QP/C Project Forks](https://github.com/tiacsys/sync-forked-git/actions/workflows/git-sync-qpc.yml/badge.svg)](https://github.com/tiacsys/sync-forked-git/actions/workflows/git-sync-qpc.yml)
+
+- *from:* https://github.com/QuantumLeaps/qpc
+
+  *to:* https://github.com/tiacsys/qpc
+
+  > The **QP/C** Project's active objects (actors) and hierarchical state machines for embedded RTOS.
+
+---
+
 ## [Lua](https://www.lua.org/)
 
 [![Sync Lua Project Forks](https://github.com/tiacsys/sync-forked-git/actions/workflows/git-sync-lua.yml/badge.svg)](https://github.com/tiacsys/sync-forked-git/actions/workflows/git-sync-lua.yml)

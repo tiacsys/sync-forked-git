@@ -1,0 +1,41 @@
+# Copyright (c) 2021-2022 TiaC Systems
+# SPDX-License-Identifier: Unlicense
+
+name: Sync QP/C Project Forks
+
+on:
+  schedule: # At every minute past hour 0, 4, 8, 12, 16, and 20.
+    - cron: '* 0,4,8,12,16,20 * * *'
+  workflow_dispatch: # And manually on button click.
+
+jobs:
+  git-sync:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        repo:
+          - qpc
+        branch:
+          - master
+
+    steps:
+      - name: git-sync-qpc
+        uses: wei/git-sync@v3
+        with:
+          source_repo: "git@github.com:QuantumLeaps/${{ matrix.repo }}.git"
+          source_branch: "${{ matrix.branch }}"
+          destination_repo: "git@github.com:tiacsys/${{ matrix.repo }}.git"
+          destination_branch: "${{ matrix.branch }}"
+          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY_QPC }}
+        if: ${{ matrix.repo == 'qpc' }}
+
+      - name: git-sync-qpc-tags
+        uses: wei/git-sync@v3
+        with:
+          source_repo: "git@github.com:QuantumLeaps/${{ matrix.repo }}.git"
+          source_branch: "refs/tags/*"
+          destination_repo: "git@github.com:tiacsys/${{ matrix.repo }}.git"
+          destination_branch: "refs/tags/*"
+          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY_QPC }}
+        if: ${{ matrix.repo == 'qpc' }}
