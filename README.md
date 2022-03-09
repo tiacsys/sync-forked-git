@@ -16,9 +16,9 @@ Sync forked Git repositories with their origin.
 
 ---
 
-## [QP/C](https://www.state-machine.com/products/qp)
+## [Quantum Leaps' Software Ecosystem](https://www.state-machine.com/products)
 
-[![Sync QP/C Project Forks](https://github.com/tiacsys/sync-forked-git/actions/workflows/git-sync-qpc.yml/badge.svg)](https://github.com/tiacsys/sync-forked-git/actions/workflows/git-sync-qpc.yml)
+[![Sync Quantum Leaps Project Forks](https://github.com/tiacsys/sync-forked-git/actions/workflows/git-sync-ql.yml/badge.svg)](https://github.com/tiacsys/sync-forked-git/actions/workflows/git-sync-ql.yml)
 
 - *from:* https://github.com/QuantumLeaps/qpc
 

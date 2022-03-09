@@ -1,7 +1,7 @@
 # Copyright (c) 2021-2022 TiaC Systems
 # SPDX-License-Identifier: Unlicense
 
-name: Sync QP/C Project Forks
+name: Sync Quantum Leaps Project Forks
 
 on:
   schedule: # At every minute past hour 0, 4, 8, 12, 16, and 20.
