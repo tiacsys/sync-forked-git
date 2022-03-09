@@ -20,6 +20,7 @@ jobs:
           - master
           - v5.3
           - v5-2
+          - "refs/tags/*"
 
     steps:
       - name: git-sync-lua
@@ -29,15 +30,5 @@ jobs:
           source_branch: "${{ matrix.branch }}"
           destination_repo: "git@github.com:tiacsys/${{ matrix.repo }}.git"
           destination_branch: "${{ matrix.branch }}"
-          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY_LUA }}
-        if: ${{ matrix.repo == 'lua' }}
-
-      - name: git-sync-lua-tags
-        uses: wei/git-sync@v3
-        with:
-          source_repo: "git@github.com:lua/${{ matrix.repo }}.git"
-          source_branch: "refs/tags/*"
-          destination_repo: "git@github.com:tiacsys/${{ matrix.repo }}.git"
-          destination_branch: "refs/tags/*"
           ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY_LUA }}
         if: ${{ matrix.repo == 'lua' }}
