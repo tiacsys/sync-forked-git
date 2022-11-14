@@ -1,0 +1,43 @@
+# Copyright (c) 2021-2022 TiaC Systems
+# SPDX-License-Identifier: Unlicense
+
+name: Sync NASA Forks
+
+on:
+  schedule: # At every minute past hour 0, 4, 8, 12, 16, and 20.
+    - cron: '* 0,4,8,12,16,20 * * *'
+  workflow_dispatch: # And manually on button click.
+
+jobs:
+  git-sync:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        repo:
+          - ikos
+          - fret
+        branch:
+          - master
+          - "refs/tags/*"
+
+    steps:
+      - name: git-sync-ikos
+        uses: wei/git-sync@v3
+        with:
+          source_repo: "git@github.com:NASA-SW-VnV/${{ matrix.repo }}.git"
+          source_branch: "${{ matrix.branch }}"
+          destination_repo: "git@github.com:tiacsys/${{ matrix.repo }}.git"
+          destination_branch: "${{ matrix.branch }}"
+          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY_IKOS }}
+        if: ${{ matrix.repo == 'ikos' }}
+
+      - name: git-sync-fret
+        uses: wei/git-sync@v3
+        with:
+          source_repo: "git@github.com:NASA-SW-VnV/${{ matrix.repo }}.git"
+          source_branch: "${{ matrix.branch }}"
+          destination_repo: "git@github.com:tiacsys/${{ matrix.repo }}.git"
+          destination_branch: "${{ matrix.branch }}"
+          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY_FRET }}
+        if: ${{ matrix.repo == 'fret' }}

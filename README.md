@@ -98,3 +98,23 @@ Sync forked Git repositories with their origin.
   *to:* https://github.com/tiacsys/kicad-templates
 
   > The **KiCad templates** are the individual project and worksheet template directories.
+
+---
+
+## [NASA's Technology Transfer Program](https://technology.nasa.gov/)
+
+[![Sync NASA Forks](https://github.com/tiacsys/sync-forked-git/actions/workflows/git-sync-nasa.yml/badge.svg)](https://github.com/tiacsys/sync-forked-git/actions/workflows/git-sync-nasa.yml)
+
+- *from:* https://github.com/NASA-SW-VnV/ikos
+
+  *to:* https://github.com/tiacsys/ikos
+
+  > Static analyzer for C/C++ based on the theory of **Abstract Interpretation**, see:
+  > **NASA ARC-16789-1**: [Inference Kernel for Open Static (IKOS) Analyzers](https://software.nasa.gov/software/ARC-16789-1)
+
+- *from:* https://github.com/NASA-SW-VnV/fret
+
+  *to:* https://github.com/tiacsys/fret
+
+  > A framework for the elicitation, specification, **formalization and understanding of requirements**.
+  > **NASA ARC-18066-1**: [FRET : Formal Requirements Elicitation Tool](https://software.nasa.gov/software/ARC-18066-1)
