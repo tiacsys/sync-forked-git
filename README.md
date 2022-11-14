@@ -16,6 +16,18 @@ Sync forked Git repositories with their origin.
 
 ---
 
+## [Twister v2](https://github.com/zephyrproject-rtos/twister)
+
+[![Sync Twister v2 Forks](https://github.com/tiacsys/sync-forked-git/actions/workflows/git-sync-twister.yml/badge.svg)](https://github.com/tiacsys/sync-forked-git/actions/workflows/git-sync-twister.yml)
+
+- *from:* https://github.com/zephyrproject-rtos/twister
+
+  *to:* https://github.com/tiacsys/twister
+
+  > The **Zephyr** Project's test runner script V2 (twister) – NOT (YET) FOR PRODUCTION – **(still under development)**.
+
+---
+
 ## [Quantum Leaps' Software Ecosystem](https://www.state-machine.com/products)
 
 [![Sync Quantum Leaps Project Forks](https://github.com/tiacsys/sync-forked-git/actions/workflows/git-sync-ql.yml/badge.svg)](https://github.com/tiacsys/sync-forked-git/actions/workflows/git-sync-ql.yml)
