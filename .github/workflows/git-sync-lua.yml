@@ -18,10 +18,10 @@ jobs:
           - lua
         branch:
           - master
-          - v5.4.0-patch
-          - v5.4.0
-          - v5.3
-          - v5-2
+          - "refs/heads/v5.4.0-patch"
+          - "refs/heads/v5.4.0"
+          - "refs/heads/v5.3"
+          - "refs/heads/v5-2"
           - "refs/tags/*"
 
     steps:
