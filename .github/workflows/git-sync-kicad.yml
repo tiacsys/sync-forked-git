@@ -23,6 +23,7 @@ jobs:
           - kicad-templates
         branch:
           - master
+          - v6
           - v5
           - "refs/tags/*"
 
@@ -65,7 +66,7 @@ jobs:
           destination_repo: "git@github.com:tiacsys/${{ matrix.repo }}.git"
           destination_branch: "${{ matrix.branch }}"
           ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY_KICAD_PACKAGES3D_SOURCE }}
-        if: ${{ matrix.repo == 'kicad-packages3D-source' }}
+        if: ${{ matrix.repo == 'kicad-packages3D-source' && matrix.branch != 'v6' }}  # no v6
 
       - name: git-sync-kicad-library-utils
         uses: wei/git-sync@v3
@@ -85,4 +86,4 @@ jobs:
           destination_repo: "git@github.com:tiacsys/${{ matrix.repo }}.git"
           destination_branch: "${{ matrix.branch }}"
           ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY_KICAD_TEMPLATES }}
-        if: ${{ matrix.repo == 'kicad-templates' }}
+        if: ${{ matrix.repo == 'kicad-templates' && matrix.branch != 'v6' }}  # no v6
