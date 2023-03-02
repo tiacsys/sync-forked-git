@@ -22,7 +22,7 @@ jobs:
 
     steps:
       - name: git-sync-qpc
-        uses: wei/git-sync@v3
+        uses: tiacsys/git-sync@v3
         with:
           source_repo: "git@github.com:QuantumLeaps/${{ matrix.repo }}.git"
           source_branch: "${{ matrix.branch }}"
