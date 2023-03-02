@@ -4,6 +4,18 @@ Sync forked Git repositories with their origin.
 
 ---
 
+## [Git Sync Action](https://github.com/marketplace/actions/git-sync-action)
+
+[![Sync Tooling Forks](https://github.com/tiacsys/sync-forked-git/actions/workflows/git-sync-tooling.yml/badge.svg)](https://github.com/tiacsys/sync-forked-git/actions/workflows/git-sync-tooling.yml)
+
+- *from:* https://github.com/wei/git-sync
+
+  *to:* https://github.com/tiacsys/git-sync
+
+  > A **GitHub Action** for **syncing between two independent repositories** using **force push**.
+
+---
+
 ## [Zephyr](https://www.zephyrproject.org/)
 
 [![Sync Zephyr Project Forks](https://github.com/tiacsys/sync-forked-git/actions/workflows/git-sync-zephyr.yml/badge.svg)](https://github.com/tiacsys/sync-forked-git/actions/workflows/git-sync-zephyr.yml)
