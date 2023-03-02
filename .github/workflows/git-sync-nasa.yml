@@ -23,7 +23,7 @@ jobs:
 
     steps:
       - name: git-sync-ikos
-        uses: wei/git-sync@v3
+        uses: tiacsys/git-sync@v3
         with:
           source_repo: "git@github.com:NASA-SW-VnV/${{ matrix.repo }}.git"
           source_branch: "${{ matrix.branch }}"
@@ -33,7 +33,7 @@ jobs:
         if: ${{ matrix.repo == 'ikos' }}
 
       - name: git-sync-fret
-        uses: wei/git-sync@v3
+        uses: tiacsys/git-sync@v3
         with:
           source_repo: "git@github.com:NASA-SW-VnV/${{ matrix.repo }}.git"
           source_branch: "${{ matrix.branch }}"
