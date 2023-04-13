@@ -40,6 +40,25 @@ Sync forked Git repositories with their origin.
 
 ---
 
+## [Trinamic's Evaluation Kits](https://www.trinamic.com/support/eval-kits)
+
+[![Sync Trinamic Project Forks](https://github.com/tiacsys/sync-forked-git/actions/workflows/git-sync-trinamic.yml/badge.svg)](https://github.com/tiacsys/sync-forked-git/actions/workflows/git-sync-trinamic.yml)
+
+- *from:* https://github.com/trinamic/TMC-API
+
+  *to:* https://github.com/tiacsys/TMC-API
+
+  > The **TMC-API** is a portable C library for working with **Trinamic ICs** in embedded projects.
+  > It is CPU-independent and self-contained (no external dependencies).
+
+- *from:* https://github.com/trinamic/TMC-EvalSystem
+
+  *to:* https://github.com/tiacsys/TMC-EvalSystem
+
+  > The **TMC-EvalSystem** is the bare-metal firmware for working with **Trinamic Evaluation Systems**.
+
+---
+
 ## [Quantum Leaps' Software Ecosystem](https://www.state-machine.com/products)
 
 [![Sync Quantum Leaps Project Forks](https://github.com/tiacsys/sync-forked-git/actions/workflows/git-sync-ql.yml/badge.svg)](https://github.com/tiacsys/sync-forked-git/actions/workflows/git-sync-ql.yml)

@@ -1,0 +1,43 @@
+# Copyright (c) 2021-2023 TiaC Systems
+# SPDX-License-Identifier: Unlicense
+
+name: Sync Trinamic Forks
+
+on:
+  schedule: # At every minute past hour 0, 4, 8, 12, 16, and 20.
+    - cron: '* 0,4,8,12,16,20 * * *'
+  workflow_dispatch: # And manually on button click.
+
+jobs:
+  git-sync:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        repo:
+          - TMC-API
+          - TMC-EvalSystem
+        branch:
+          - master
+          - "refs/tags/*"
+
+    steps:
+      - name: git-sync-tmcapi
+        uses: tiacsys/git-sync@v3
+        with:
+          source_repo: "git@github.com:trinamic/${{ matrix.repo }}.git"
+          source_branch: "${{ matrix.branch }}"
+          destination_repo: "git@github.com:tiacsys/${{ matrix.repo }}.git"
+          destination_branch: "${{ matrix.branch }}"
+          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY_TMCAPI }}
+        if: ${{ matrix.repo == 'TMC-API' }}
+
+      - name: git-sync-tmcesfw
+        uses: tiacsys/git-sync@v3
+        with:
+          source_repo: "git@github.com:trinamic/${{ matrix.repo }}.git"
+          source_branch: "${{ matrix.branch }}"
+          destination_repo: "git@github.com:tiacsys/${{ matrix.repo }}.git"
+          destination_branch: "${{ matrix.branch }}"
+          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY_TMCESFW }}
+        if: ${{ matrix.repo == 'TMC-EvalSystem' }}
