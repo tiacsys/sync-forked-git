@@ -67,6 +67,7 @@ jobs:
           - zephyr
         branch:
           - main
+          - v3.5-branch
           - v3.4-branch
           - v3.3-branch
           - v3.2-branch
