@@ -40,6 +40,20 @@ Sync forked Git repositories with their origin.
 
 ---
 
+## [U-blox Evaluation Tools](https://www.u-blox.com/evk-search)
+
+[![Sync u-blox Project Forks](https://github.com/tiacsys/sync-forked-git/actions/workflows/git-sync-u-blox.yml/badge.svg)](https://github.com/tiacsys/sync-forked-git/actions/workflows/git-sync-u-blox.yml)
+
+- *from:* https://github.com/u-blox/ubxlib
+
+  *to:* https://github.com/tiacsys/ubxlib
+
+  > The **ubxlib** is a portable C library which provide APIs to build
+  > applications with u-blox products and services. Delivered as add-on
+  > to existing microcontroller and RTOS SDKs.
+
+---
+
 ## [Trinamic's Evaluation Kits](https://www.trinamic.com/support/eval-kits)
 
 [![Sync Trinamic Project Forks](https://github.com/tiacsys/sync-forked-git/actions/workflows/git-sync-trinamic.yml/badge.svg)](https://github.com/tiacsys/sync-forked-git/actions/workflows/git-sync-trinamic.yml)
