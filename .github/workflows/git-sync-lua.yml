@@ -18,8 +18,8 @@ jobs:
           - lua
         branch:
           - master
-          - "refs/heads/v5.4.0-patch"
           - "refs/heads/v5.4.0"
+          - "refs/heads/v5.4"
           - "refs/heads/v5.3"
           - "refs/heads/v5-2"
           - "refs/tags/*"
