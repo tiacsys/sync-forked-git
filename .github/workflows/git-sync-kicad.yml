@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022 TiaC Systems
+# Copyright (c) 2021-2024 TiaC Systems
 # SPDX-License-Identifier: Unlicense
 
 name: Sync KiCad Project Forks
@@ -23,6 +23,7 @@ jobs:
           - kicad-templates
         branch:
           - master
+          - v8
           - v7
           - v6
           - v5
@@ -57,7 +58,8 @@ jobs:
           destination_repo: "git@github.com:tiacsys/${{ matrix.repo }}.git"
           destination_branch: "${{ matrix.branch }}"
           ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY_KICAD_PACKAGES3D }}
-        if: ${{ matrix.repo == 'kicad-packages3D' && matrix.branch != 'v7' }}  # no v7
+        if: ${{ matrix.repo == 'kicad-packages3D' && matrix.branch != 'v7'
+                                                  && matrix.branch != 'v8' }}  # no since v7
 
       - name: git-sync-kicad-packages3D-source
         uses: tiacsys/git-sync@v3
@@ -68,7 +70,8 @@ jobs:
           destination_branch: "${{ matrix.branch }}"
           ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY_KICAD_PACKAGES3D_SOURCE }}
         if: ${{ matrix.repo == 'kicad-packages3D-source' && matrix.branch != 'v6'
-                                                         && matrix.branch != 'v7' }}  # no v6/v7
+                                                         && matrix.branch != 'v7'
+                                                         && matrix.branch != 'v8' }}  # no since v6
 
       - name: git-sync-kicad-library-utils
         uses: tiacsys/git-sync@v3
@@ -78,7 +81,8 @@ jobs:
           destination_repo: "git@github.com:tiacsys/${{ matrix.repo }}.git"
           destination_branch: "${{ matrix.branch }}"
           ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY_KICAD_LIBRARY_UTILS }}
-        if: ${{ matrix.repo == 'kicad-library-utils' && matrix.branch != 'v7' }}  # no v7
+        if: ${{ matrix.repo == 'kicad-library-utils' && matrix.branch != 'v7'
+                                                     && matrix.branch != 'v8' }}  # no since v7
 
       - name: git-sync-kicad-templates
         uses: tiacsys/git-sync@v3
