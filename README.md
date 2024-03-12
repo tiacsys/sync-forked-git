@@ -40,6 +40,21 @@ Sync forked Git repositories with their origin.
 
 ---
 
+## [robot2rst](https://github.com/melexis/robot2rst)
+
+[![Sync robot2rst Project Forks](https://github.com/tiacsys/sync-forked-git/actions/workflows/git-sync-robot2rst.yml/badge.svg)](https://github.com/tiacsys/sync-forked-git/actions/workflows/git-sync-robot2rst.yml)
+
+- *from:* https://github.com/melexis/robot2rst
+
+  *to:* https://github.com/tiacsys/robot2rst
+
+  > The **robot2rst** tool converts your `.robot` files from
+  > Robot Framework to reStructuredText (`.rst`) files with
+  > traceable items. This allows you to connect your
+  > requirements to test cases.
+
+---
+
 ## [U-blox Evaluation Tools](https://www.u-blox.com/evk-search)
 
 [![Sync u-blox Project Forks](https://github.com/tiacsys/sync-forked-git/actions/workflows/git-sync-u-blox.yml/badge.svg)](https://github.com/tiacsys/sync-forked-git/actions/workflows/git-sync-u-blox.yml)
