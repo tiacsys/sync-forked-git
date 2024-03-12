@@ -23,6 +23,7 @@ jobs:
           - kicad-templates
         branch:
           - master
+          - v7
           - v6
           - v5
           - "refs/tags/*"
@@ -56,7 +57,7 @@ jobs:
           destination_repo: "git@github.com:tiacsys/${{ matrix.repo }}.git"
           destination_branch: "${{ matrix.branch }}"
           ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY_KICAD_PACKAGES3D }}
-        if: ${{ matrix.repo == 'kicad-packages3D' }}
+        if: ${{ matrix.repo == 'kicad-packages3D' && matrix.branch != 'v7' }}  # no v7
 
       - name: git-sync-kicad-packages3D-source
         uses: tiacsys/git-sync@v3
@@ -66,7 +67,8 @@ jobs:
           destination_repo: "git@github.com:tiacsys/${{ matrix.repo }}.git"
           destination_branch: "${{ matrix.branch }}"
           ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY_KICAD_PACKAGES3D_SOURCE }}
-        if: ${{ matrix.repo == 'kicad-packages3D-source' && matrix.branch != 'v6' }}  # no v6
+        if: ${{ matrix.repo == 'kicad-packages3D-source' && matrix.branch != 'v6'
+                                                         && matrix.branch != 'v7' }}  # no v6/v7
 
       - name: git-sync-kicad-library-utils
         uses: tiacsys/git-sync@v3
@@ -76,7 +78,7 @@ jobs:
           destination_repo: "git@github.com:tiacsys/${{ matrix.repo }}.git"
           destination_branch: "${{ matrix.branch }}"
           ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY_KICAD_LIBRARY_UTILS }}
-        if: ${{ matrix.repo == 'kicad-library-utils' }}
+        if: ${{ matrix.repo == 'kicad-library-utils' && matrix.branch != 'v7' }}  # no v7
 
       - name: git-sync-kicad-templates
         uses: tiacsys/git-sync@v3
