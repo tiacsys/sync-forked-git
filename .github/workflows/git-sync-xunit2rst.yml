@@ -1,0 +1,54 @@
+# Copyright (c) 2021-2024 TiaC Systems
+# SPDX-License-Identifier: Unlicense
+
+name: Sync xunit2rst Project Forks
+
+on:
+  schedule: # At every minute past hour 0, 4, 8, 12, 16, and 20.
+    - cron: '* 0,4,8,12,16,20 * * *'
+  workflow_dispatch: # And manually on button click.
+
+jobs:
+  git-sync:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        repo:
+          - xunit2rst
+        branch:
+          - master
+          - "refs/tags/*"
+
+    steps:
+      - name: git-sync-xunit2rst
+        uses: tiacsys/git-sync@v3
+        with:
+          source_repo: "git@github.com:melexis/${{ matrix.repo }}.git"
+          source_branch: "${{ matrix.branch }}"
+          destination_repo: "git@github.com:tiacsys/${{ matrix.repo }}.git"
+          destination_branch: "${{ matrix.branch }}"
+          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY_XUNIT2RST }}
+        if: ${{ matrix.repo == 'xunit2rst' }}
+
+  git-rebase:
+    runs-on: ubuntu-latest
+
+    needs: git-sync
+
+    strategy:
+      matrix:
+        repo:
+          - xunit2rst
+        branch:
+          - master
+
+    steps:
+      - name: git-rebase-xunit2rst
+        uses: tiacsys/git-rebase@v1
+        with:
+          repo: "git@github.com:tiacsys/${{ matrix.repo }}.git"
+          source_branch: "tiacsys/${{ matrix.branch }}"
+          destination_branch: "${{ matrix.branch }}"
+          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY_XUNIT2RST }}
+        if: ${{ matrix.repo == 'xunit2rst' }}
