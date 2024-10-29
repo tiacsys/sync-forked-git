@@ -17,6 +17,10 @@ jobs:
         repo:
           - zephyr
         branch:
+          - collab-mesh-subnet
+          - collab-rust
+          - collab-safety
+          - collab-sdk-dev
           - main
           - v3.7-branch
           - v3.6-branch
