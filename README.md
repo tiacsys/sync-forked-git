@@ -192,3 +192,15 @@ Sync forked Git repositories with their origin.
 
   > A framework for the elicitation, specification, **formalization and understanding of requirements**.
   > **NASA ARC-18066-1**: [FRET : Formal Requirements Elicitation Tool](https://software.nasa.gov/software/ARC-18066-1)
+
+---
+
+## [sphinx-revealjs](https://attakei.github.io/sphinx-revealjs)
+
+[![Sync Sphinx Forks](https://github.com/tiacsys/sync-forked-git/actions/workflows/git-sync-sphinx.yml/badge.svg)](https://github.com/tiacsys/sync-forked-git/actions/workflows/git-sync-sphinx.yml)
+
+- *from:* https://github.com/attakei/sphinx-revealjs
+
+  *to:* https://github.com/tiacsys/sphinx-revealjs
+
+  > A **Sphinx extension with theme to generate Reveal.js presentations**.
