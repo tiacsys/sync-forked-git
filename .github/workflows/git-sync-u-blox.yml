@@ -52,3 +52,12 @@ jobs:
           destination_branch: "${{ matrix.branch }}"
           ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY_UBXLIB }}
         if: ${{ matrix.repo == 'ubxlib' }}
+
+      - name: git-rebase-ubxlib@itd
+        uses: tiacsys/git-rebase@v1
+        with:
+          repo: "git@github.com:tiacsys/${{ matrix.repo }}.git"
+          source_branch: "itd/${{ matrix.branch }}"
+          destination_branch: "${{ matrix.branch }}"
+          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY_UBXLIB }}
+        if: ${{ matrix.repo == 'ubxlib' }}
