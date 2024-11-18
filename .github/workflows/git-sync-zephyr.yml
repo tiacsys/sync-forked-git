@@ -74,6 +74,7 @@ jobs:
           - zephyr
         branch:
           - main
+          - v4.0-branch
           - v3.7-branch
           - v3.6-branch
           - v3.5-branch
