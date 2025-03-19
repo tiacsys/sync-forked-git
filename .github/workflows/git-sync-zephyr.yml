@@ -22,6 +22,7 @@ jobs:
           - collab-safety
           - collab-sdk-dev
           - main
+          - v4.1-branch
           - v4.0-branch
           - v3.7-branch
           - v3.6-branch
