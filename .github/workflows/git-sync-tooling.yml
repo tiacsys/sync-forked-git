@@ -17,6 +17,7 @@ jobs:
         repo:
           - git-sync
           - ssh-setup
+          - zephyr-setup
         branch:
           - main
           - master
@@ -42,3 +43,13 @@ jobs:
           destination_branch: "${{ matrix.branch }}"
           ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY_TOOLING_SSH_SETUP }}
         if: ${{ matrix.repo == 'ssh-setup' && matrix.branch != 'master' }}  # no master
+
+      - name: git-sync-tooling-zephyr-setup
+        uses: tiacsys/git-sync@v3
+        with:
+          source_repo: "git@github.com:zephyrproject-rtos/action-${{ matrix.repo }}.git"
+          source_branch: "${{ matrix.branch }}"
+          destination_repo: "git@github.com:tiacsys/${{ matrix.repo }}.git"
+          destination_branch: "${{ matrix.branch }}"
+          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY_TOOLING_ZEPHYR_SETUP }}
+        if: ${{ matrix.repo == 'zephyr-setup' && matrix.branch != 'master' }}  # no master

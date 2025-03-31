@@ -24,6 +24,14 @@ Sync forked Git repositories with their origin.
 
   > A **GitHub Action** helps you to **setup SSH** mainly for **access SSH server by key-pair**.
 
+### [Zephyr Setup Action](https://github.com/zephyrproject-rtos/action-zephyr-setup?tab=readme-ov-file#readme)
+
+- *from:* https://github.com/zephyrproject-rtos/action-zephyr-setup
+
+  *to:* https://github.com/tiacsys/zephyr-setup
+
+  > A **GitHub Action** helps you to **initializes a Zephyr based project**, downloading the Zephyr SDK and the necessary modules.
+
 ---
 
 ## [Zephyr](https://www.zephyrproject.org/)
