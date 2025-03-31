@@ -4,15 +4,25 @@ Sync forked Git repositories with their origin.
 
 ---
 
-## [Git Sync Action](https://github.com/marketplace/actions/git-sync-action)
+## Engineering Tools
 
 [![Sync Tooling Forks](https://github.com/tiacsys/sync-forked-git/actions/workflows/git-sync-tooling.yml/badge.svg)](https://github.com/tiacsys/sync-forked-git/actions/workflows/git-sync-tooling.yml)
+
+### [Git Sync Action](https://github.com/marketplace/actions/git-sync-action)
 
 - *from:* https://github.com/wei/git-sync
 
   *to:* https://github.com/tiacsys/git-sync
 
   > A **GitHub Action** for **syncing between two independent repositories** using **force push**.
+
+### [SSH Setup Action](https://github.com/marketplace/actions/ssh-setup)
+
+- *from:* https://github.com/MrSquaare/ssh-setup-action
+
+  *to:* https://github.com/tiacsys/ssh-setup
+
+  > A **GitHub Action** helps you to **setup SSH** mainly for **access SSH server by key-pair**.
 
 ---
 

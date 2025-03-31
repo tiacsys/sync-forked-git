@@ -16,7 +16,9 @@ jobs:
       matrix:
         repo:
           - git-sync
+          - ssh-setup
         branch:
+          - main
           - master
           - "refs/tags/*"
 
@@ -29,4 +31,14 @@ jobs:
           destination_repo: "git@github.com:tiacsys/${{ matrix.repo }}.git"
           destination_branch: "${{ matrix.branch }}"
           ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY_TOOLING_GIT_SYNC }}
-        if: ${{ matrix.repo == 'git-sync' }}
+        if: ${{ matrix.repo == 'git-sync' && matrix.branch != 'main' }}  # no main
+
+      - name: git-sync-tooling-ssh-setup
+        uses: tiacsys/git-sync@v3
+        with:
+          source_repo: "git@github.com:MrSquaare/${{ matrix.repo }}-action.git"
+          source_branch: "${{ matrix.branch }}"
+          destination_repo: "git@github.com:tiacsys/${{ matrix.repo }}.git"
+          destination_branch: "${{ matrix.branch }}"
+          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY_TOOLING_SSH_SETUP }}
+        if: ${{ matrix.repo == 'ssh-setup' && matrix.branch != 'master' }}  # no master
