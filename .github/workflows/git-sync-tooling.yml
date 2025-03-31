@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2023 TiaC Systems
+# Copyright (c) 2021-2025 TiaC Systems
 # SPDX-License-Identifier: Unlicense
 
 name: Sync Tooling Forks
@@ -28,5 +28,5 @@ jobs:
           source_branch: "${{ matrix.branch }}"
           destination_repo: "git@github.com:tiacsys/${{ matrix.repo }}.git"
           destination_branch: "${{ matrix.branch }}"
-          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY_TOOLING }}
+          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY_TOOLING_GIT_SYNC }}
         if: ${{ matrix.repo == 'git-sync' }}
