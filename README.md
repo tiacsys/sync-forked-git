@@ -87,6 +87,221 @@ Sync forked Git repositories with their origin.
 
 ---
 
+## [OpenWCH SDK and HDK](https://github.com/openwch)
+
+[![Sync OpenWCH Project Forks](https://github.com/tiacsys/sync-forked-git/actions/workflows/git-sync-openwch.yml/badge.svg)](https://github.com/tiacsys/sync-forked-git/actions/workflows/git-sync-openwch.yml)
+
+- *from:* https://github.com/openwch/ch32f20x
+
+  *to:* https://github.com/tiacsys/openwch-ch32f20x
+
+  > The **ch32f20x** is the SDK and HDK for CH32F202/8 chips (Cortex-M3 MCU).
+  >
+  > *purposes*: **industrial-grade enhanced low-power general-purpose (wireless) microcontroller**
+  >
+  > *SDK in*: ``EVT/EXAM/SRC/StdPeriphDriver``
+  >
+  > *HDK in*: ``EVT/PUB``
+
+- *from:* https://github.com/openwch/ch32l103
+
+  *to:* https://github.com/tiacsys/openwch-ch32l103
+
+  > The **ch32l103** is the SDK and HDK for CH32L103 chips based on
+  > (Highland Barley) Qingke 32-bit RISC-V4C core (RV32IMAC).
+  >
+  > *purposes*: **industrial-grade low-power general-purpose microcontroller**
+  >
+  > *SDK in*: ``EVT/EXAM/SRC/StdPeriphDriver``
+  >
+  > *HDK in*: ``EVT/PUB``
+
+- *from:* https://github.com/openwch/ch32m030
+
+  *to:* https://github.com/tiacsys/openwch-ch32m030
+
+  > The **ch32m030** is the SDK and HDK for CH32M030 chips based on
+  > (Highland Barley) Qingke 32-bit RISC-V3B core (RV32IMCB).
+  >
+  > *purposes*: **industrial-grade motor microcontroller**
+  >
+  > *SDK in*: ``EVT/EXAM/SRC/Peripheral``
+  >
+  > *HDK in*: ``EVT/PUB``
+
+- *from:* https://github.com/openwch/ch32v002_004_005_006_007
+
+  *to:* https://github.com/tiacsys/openwch-ch32v002_004_005_006_007
+
+  > The **ch32v002_004_005_006_007** is the SDK and HDK for CH32V002,
+  > CH32V004, CH32V005, CH32V006, CH32V007, and CH32M007 chips based on
+  > (Highland Barley) Qingke 32-bit RISC-V2C core (RV32EMC).
+  >
+  > *purposes*: **industrial-grade general-purpose microcontrollers**
+  >
+  > *SDK in*: ``EVT/EXAM/SRC/Peripheral``
+  >
+  > *HDK in*: ``EVT/PUB``
+
+- *from:* https://github.com/openwch/ch32v003
+
+  *to:* https://github.com/tiacsys/openwch-ch32v003
+
+  > The **ch32v003** is the SDK and HDK for CH32V003 chips based on
+  > (Highland Barley) Qingke 32-bit RISC-V2A core (RV32EMC).
+  >
+  > *purposes*: **industrial-grade general-purpose microcontrollers**
+  >
+  > *SDK in*: ``EVT/EXAM/SRC/Peripheral``
+  >
+  > *HDK in*: ``EVT/PUB``
+
+- *from:* https://github.com/openwch/ch32v103
+
+  *to:* https://github.com/tiacsys/openwch-ch32v103
+
+  > The **ch32v103** is the SDK and HDK for CH32V103 chips based on
+  > (Highland Barley) Qingke 32-bit RISC-V3A core (RV32IMAC).
+  >
+  > *purposes*: **general-purpose microcontrollers**
+  >
+  > *SDK in*: ``EVT/EXAM/SRC/Peripheral``
+  >
+  > *HDK in*: ``EVT/PUB``
+
+- *from:* https://github.com/openwch/ch32v20x
+
+  *to:* https://github.com/tiacsys/openwch-ch32v20x
+
+  > The **ch32v20x** is the SDK and HDK for CH32V203 chips based on
+  > (Highland Barley) Qingke 32-bit RISC-V4B core (RV32IMAC) and
+  > CH32V208 chips based on Qingke 32-bit RISC-V4C core (RV32IMAC).
+  >
+  > *purposes*: **industrial-grade enhanced low-power general-purpose microcontrollers**
+  >
+  > *SDK in*: ``EVT/EXAM/SRC/Peripheral``
+  >
+  > *HDK in*: ``EVT/PUB``
+
+- *from:* https://github.com/openwch/ch32v307
+
+  *to:* https://github.com/tiacsys/openwch-ch32v307
+
+  > The **ch32v307** is the SDK and HDK for CH32V305/7 chips based on
+  > (Highland Barley) Qingke 32-bit RISC-V4F core (RV32IMACF).
+  >
+  > *purposes*: **interconnected microcontrollers**
+  >
+  > *SDK in*: ``EVT/EXAM/SRC/Peripheral``
+  >
+  > *HDK in*: ``EVT/PUB``
+
+- *from:* https://github.com/openwch/ch32x035
+
+  *to:* https://github.com/tiacsys/openwch-ch32x035
+
+  > The **ch32x035** is the SDK and HDK for CH32X035 chips based on
+  > (Highland Barley) Qingke 32-bit RISC-V4C core (RV32IMAC).
+  >
+  > *purposes*: **industrial-grade microcontrollers**
+  >
+  > *SDK in*: ``EVT/EXAM/SRC/Peripheral``
+  >
+  > *HDK in*: ``EVT/PUB``
+
+- *from:* https://github.com/openwch/ch569
+
+  *to:* https://github.com/tiacsys/openwch-ch569
+
+  > The **ch569** is the SDK and HDK for CH565/9 chips based on
+  > (Highland Barley) Qingke 32-bit RISC-V3A core (RV32IMAC).
+  >
+  > *purposes*: **super-high-speed USB 3.0 Gigabit Ethernet microcontrollers**
+  >
+  > *SDK in*: ``EVT/EXAM/SRC/Peripheral``
+  >
+  > *HDK in*: ``EVT/PUB``
+
+- *from:* https://github.com/openwch/ch570
+
+  *to:* https://github.com/tiacsys/openwch-ch570
+
+  > The **ch570** is the SDK and HDK for CH570/2 chips based on
+  > (Highland Barley) Qingke 32-bit RISC-V3C core (RV32IMCB).
+  >
+  > *purposes*: **full-speed USB 2.0 BLE 5.0 / 2.4GHz RF link microcontrollers**
+  >
+  > *SDK in*: ``EVT/EXAM/SRC/StdPeriphDriver``
+  >
+  > *HDK in*: ``EVT/PUB``
+
+- *from:* https://github.com/openwch/ch583
+
+  *to:* https://github.com/tiacsys/openwch-ch583
+
+  > The **ch583** is the SDK and HDK for CH581/2/3 chips based on
+  > (Highland Barley) Qingke 32-bit RISC-V4A core (RV32IMAC).
+  >
+  > *purposes*: **full-speed USB 2.0 BLE 5.3 / 2.4GHz RF link microcontrollers**
+  >
+  > *SDK in*: ``EVT/EXAM/SRC/StdPeriphDriver``
+  >
+  > *HDK in*: ``EVT/PUB``
+
+- *from:* https://github.com/openwch/ch585
+
+  *to:* https://github.com/tiacsys/openwch-ch585
+
+  > The **ch585** is the SDK and HDK for CH584/5 chips based on
+  > (Highland Barley) Qingke 32-bit RISC-V3C core (RV32IMCB).
+  >
+  > *purposes*: **high-speed USB 2.0 BLE 5.4 / 2.4GHz RF link microcontrollers**
+  >
+  > *SDK in*: ``EVT/EXAM/SRC/StdPeriphDriver``
+  >
+  > *HDK in*: ``EVT/PUB``
+
+- *from:* https://github.com/openwch/ch592
+
+  *to:* https://github.com/tiacsys/openwch-ch592
+
+  > The **ch592** is the SDK and HDK for CH591/2 chips based on
+  > (Highland Barley) Qingke 32-bit RISC-V4C core (RV32IMAC).
+  >
+  > *purposes*: **full-speed USB 2.0 BLE 5.4 / 2.4GHz RF link microcontrollers**
+  >
+  > *SDK in*: ``EVT/EXAM/SRC/StdPeriphDriver``
+  >
+  > *HDK in*: ``EVT/PUB``
+
+- *from:* https://github.com/openwch/ch641
+
+  *to:* https://github.com/tiacsys/openwch-ch641
+
+  > The **ch641** is the SDK and HDK for CH641 chips based on
+  > (Highland Barley) Qingke 32-bit RISC-V2A core (RV32EC).
+  >
+  > *purposes*: **USB-PD BC1.2 DCP HV and wireless charging microcontrollers**
+  >
+  > *SDK in*: ``EVT/EXAM/SRC/Peripheral``
+  >
+  > *HDK in*: ``EVT/PUB``
+
+- *from:* https://github.com/openwch/ch643
+
+  *to:* https://github.com/tiacsys/openwch-ch643
+
+  > The **ch643** is the SDK and HDK for CH643 chips based on
+  > (Highland Barley) Qingke 32-bit RISC-V4C core (RV32IMAC).
+  >
+  > *purposes*: **RGB display industrial-grade full-speed USB 2.0 (USB-PD) microcontrollers**
+  >
+  > *SDK in*: ``EVT/EXAM/SRC/Peripheral``
+  >
+  > *HDK in*: ``EVT/PUB``
+
+---
+
 ## [U-blox Evaluation Tools](https://www.u-blox.com/evk-search)
 
 [![Sync u-blox Project Forks](https://github.com/tiacsys/sync-forked-git/actions/workflows/git-sync-u-blox.yml/badge.svg)](https://github.com/tiacsys/sync-forked-git/actions/workflows/git-sync-u-blox.yml)

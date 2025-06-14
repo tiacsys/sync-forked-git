@@ -1,0 +1,197 @@
+# Copyright (c) 2021-2025 TiaC Systems
+# SPDX-License-Identifier: Unlicense
+
+name: Sync OpenWCH SDK and HDK Forks
+
+on:
+  schedule: # At every minute past hour 0, 4, 8, 12, 16, and 20.
+    - cron: '* 0,4,8,12,16,20 * * *'
+  workflow_dispatch: # And manually on button click.
+
+jobs:
+  git-sync:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        repo:
+          - ch32f20x
+          - ch32l103
+          - ch32m030
+          - ch32v002_004_005_006_007
+          - ch32v003
+          - ch32v103
+          - ch32v20x
+          - ch32v307
+          - ch32x035
+          - ch569
+          - ch570
+          - ch583
+          - ch585
+          - ch592
+          - ch641
+          - ch643
+        branch:
+          - main
+          # OFF, because OpenWCH has no tags anywhere upstream "refs/tags/*"
+
+    steps:
+      - name: git-sync-ch32f20x
+        uses: tiacsys/git-sync@v3
+        with:
+          source_repo: "git@github.com:openwch/${{ matrix.repo }}.git"
+          source_branch: "${{ matrix.branch }}"
+          destination_repo: "git@github.com:tiacsys/openwch-${{ matrix.repo }}.git"
+          destination_branch: "${{ matrix.branch }}"
+          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY_CH32F20X }}
+        if: ${{ matrix.repo == 'ch32f20x' }}
+
+      - name: git-sync-ch32l103
+        uses: tiacsys/git-sync@v3
+        with:
+          source_repo: "git@github.com:openwch/${{ matrix.repo }}.git"
+          source_branch: "${{ matrix.branch }}"
+          destination_repo: "git@github.com:tiacsys/openwch-${{ matrix.repo }}.git"
+          destination_branch: "${{ matrix.branch }}"
+          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY_CH32L103 }}
+        if: ${{ matrix.repo == 'ch32l103' }}
+
+      - name: git-sync-ch32m030
+        uses: tiacsys/git-sync@v3
+        with:
+          source_repo: "git@github.com:openwch/${{ matrix.repo }}.git"
+          source_branch: "${{ matrix.branch }}"
+          destination_repo: "git@github.com:tiacsys/openwch-${{ matrix.repo }}.git"
+          destination_branch: "${{ matrix.branch }}"
+          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY_CH32M030 }}
+        if: ${{ matrix.repo == 'ch32m030' }}
+
+      - name: git-sync-ch32v002_004_005_006_007
+        uses: tiacsys/git-sync@v3
+        with:
+          source_repo: "git@github.com:openwch/${{ matrix.repo }}.git"
+          source_branch: "${{ matrix.branch }}"
+          destination_repo: "git@github.com:tiacsys/openwch-${{ matrix.repo }}.git"
+          destination_branch: "${{ matrix.branch }}"
+          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY_CH32V002_004_005_006_007 }}
+        if: ${{ matrix.repo == 'ch32v002_004_005_006_007' }}
+
+      - name: git-sync-ch32v003
+        uses: tiacsys/git-sync@v3
+        with:
+          source_repo: "git@github.com:openwch/${{ matrix.repo }}.git"
+          source_branch: "${{ matrix.branch }}"
+          destination_repo: "git@github.com:tiacsys/openwch-${{ matrix.repo }}.git"
+          destination_branch: "${{ matrix.branch }}"
+          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY_CH32V003 }}
+        if: ${{ matrix.repo == 'ch32v003' }}
+
+      - name: git-sync-ch32v103
+        uses: tiacsys/git-sync@v3
+        with:
+          source_repo: "git@github.com:openwch/${{ matrix.repo }}.git"
+          source_branch: "${{ matrix.branch }}"
+          destination_repo: "git@github.com:tiacsys/openwch-${{ matrix.repo }}.git"
+          destination_branch: "${{ matrix.branch }}"
+          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY_CH32V103 }}
+        if: ${{ matrix.repo == 'ch32v103' }}
+
+      - name: git-sync-ch32v20x
+        uses: tiacsys/git-sync@v3
+        with:
+          source_repo: "git@github.com:openwch/${{ matrix.repo }}.git"
+          source_branch: "${{ matrix.branch }}"
+          destination_repo: "git@github.com:tiacsys/openwch-${{ matrix.repo }}.git"
+          destination_branch: "${{ matrix.branch }}"
+          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY_CH32V20X }}
+        if: ${{ matrix.repo == 'ch32v20x' }}
+
+      - name: git-sync-ch32v307
+        uses: tiacsys/git-sync@v3
+        with:
+          source_repo: "git@github.com:openwch/${{ matrix.repo }}.git"
+          source_branch: "${{ matrix.branch }}"
+          destination_repo: "git@github.com:tiacsys/openwch-${{ matrix.repo }}.git"
+          destination_branch: "${{ matrix.branch }}"
+          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY_CH32V307 }}
+        if: ${{ matrix.repo == 'ch32v307' }}
+
+      - name: git-sync-ch32x035
+        uses: tiacsys/git-sync@v3
+        with:
+          source_repo: "git@github.com:openwch/${{ matrix.repo }}.git"
+          source_branch: "${{ matrix.branch }}"
+          destination_repo: "git@github.com:tiacsys/openwch-${{ matrix.repo }}.git"
+          destination_branch: "${{ matrix.branch }}"
+          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY_CH32X035 }}
+        if: ${{ matrix.repo == 'ch32x035' }}
+
+      - name: git-sync-ch569
+        uses: tiacsys/git-sync@v3
+        with:
+          source_repo: "git@github.com:openwch/${{ matrix.repo }}.git"
+          source_branch: "${{ matrix.branch }}"
+          destination_repo: "git@github.com:tiacsys/openwch-${{ matrix.repo }}.git"
+          destination_branch: "${{ matrix.branch }}"
+          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY_CH569 }}
+        if: ${{ matrix.repo == 'ch569' }}
+
+      - name: git-sync-ch570
+        uses: tiacsys/git-sync@v3
+        with:
+          source_repo: "git@github.com:openwch/${{ matrix.repo }}.git"
+          source_branch: "${{ matrix.branch }}"
+          destination_repo: "git@github.com:tiacsys/openwch-${{ matrix.repo }}.git"
+          destination_branch: "${{ matrix.branch }}"
+          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY_CH570 }}
+        if: ${{ matrix.repo == 'ch570' }}
+
+      - name: git-sync-ch583
+        uses: tiacsys/git-sync@v3
+        with:
+          source_repo: "git@github.com:openwch/${{ matrix.repo }}.git"
+          source_branch: "${{ matrix.branch }}"
+          destination_repo: "git@github.com:tiacsys/openwch-${{ matrix.repo }}.git"
+          destination_branch: "${{ matrix.branch }}"
+          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY_CH583 }}
+        if: ${{ matrix.repo == 'ch583' }}
+
+      - name: git-sync-ch585
+        uses: tiacsys/git-sync@v3
+        with:
+          source_repo: "git@github.com:openwch/${{ matrix.repo }}.git"
+          source_branch: "${{ matrix.branch }}"
+          destination_repo: "git@github.com:tiacsys/openwch-${{ matrix.repo }}.git"
+          destination_branch: "${{ matrix.branch }}"
+          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY_CH585 }}
+        if: ${{ matrix.repo == 'ch585' }}
+
+      - name: git-sync-ch592
+        uses: tiacsys/git-sync@v3
+        with:
+          source_repo: "git@github.com:openwch/${{ matrix.repo }}.git"
+          source_branch: "${{ matrix.branch }}"
+          destination_repo: "git@github.com:tiacsys/openwch-${{ matrix.repo }}.git"
+          destination_branch: "${{ matrix.branch }}"
+          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY_CH592 }}
+        if: ${{ matrix.repo == 'ch592' }}
+
+      - name: git-sync-ch641
+        uses: tiacsys/git-sync@v3
+        with:
+          source_repo: "git@github.com:openwch/${{ matrix.repo }}.git"
+          source_branch: "${{ matrix.branch }}"
+          destination_repo: "git@github.com:tiacsys/openwch-${{ matrix.repo }}.git"
+          destination_branch: "${{ matrix.branch }}"
+          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY_CH641 }}
+        if: ${{ matrix.repo == 'ch641' }}
+
+      - name: git-sync-ch643
+        uses: tiacsys/git-sync@v3
+        with:
+          source_repo: "git@github.com:openwch/${{ matrix.repo }}.git"
+          source_branch: "${{ matrix.branch }}"
+          destination_repo: "git@github.com:tiacsys/openwch-${{ matrix.repo }}.git"
+          destination_branch: "${{ matrix.branch }}"
+          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY_CH643 }}
+        if: ${{ matrix.repo == 'ch643' }}
