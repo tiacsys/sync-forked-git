@@ -1,7 +1,7 @@
-# Copyright (c) 2021-2023 TiaC Systems
+# Copyright (c) 2021-2025 TiaC Systems
 # SPDX-License-Identifier: Unlicense
 
-name: Sync Trinamic Forks
+name: Sync ADI Trinamic Forks
 
 on:
   schedule: # At every minute past hour 0, 4, 8, 12, 16, and 20.
@@ -25,7 +25,7 @@ jobs:
       - name: git-sync-tmcapi
         uses: tiacsys/git-sync@v3
         with:
-          source_repo: "git@github.com:trinamic/${{ matrix.repo }}.git"
+          source_repo: "git@github.com:analogdevicesinc/${{ matrix.repo }}.git"
           source_branch: "${{ matrix.branch }}"
           destination_repo: "git@github.com:tiacsys/${{ matrix.repo }}.git"
           destination_branch: "${{ matrix.branch }}"
@@ -35,7 +35,7 @@ jobs:
       - name: git-sync-tmcesfw
         uses: tiacsys/git-sync@v3
         with:
-          source_repo: "git@github.com:trinamic/${{ matrix.repo }}.git"
+          source_repo: "git@github.com:analogdevicesinc/${{ matrix.repo }}.git"
           source_branch: "${{ matrix.branch }}"
           destination_repo: "git@github.com:tiacsys/${{ matrix.repo }}.git"
           destination_branch: "${{ matrix.branch }}"

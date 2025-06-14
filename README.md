@@ -101,18 +101,18 @@ Sync forked Git repositories with their origin.
 
 ---
 
-## [Trinamic's Evaluation Kits](https://www.trinamic.com/support/eval-kits)
+## [ADI Trinamic's Evaluation Kits](https://www.analog.com/en/resources/evaluation-hardware-and-software/motor-motion-control-software/tmc-tech-access-package.html)
 
-[![Sync Trinamic Project Forks](https://github.com/tiacsys/sync-forked-git/actions/workflows/git-sync-trinamic.yml/badge.svg)](https://github.com/tiacsys/sync-forked-git/actions/workflows/git-sync-trinamic.yml)
+[![Sync ADI Trinamic Project Forks](https://github.com/tiacsys/sync-forked-git/actions/workflows/git-sync-aditmc.yml/badge.svg)](https://github.com/tiacsys/sync-forked-git/actions/workflows/git-sync-aditmc.yml)
 
-- *from:* https://github.com/trinamic/TMC-API
+- *from:* https://github.com/analogdevicesinc/TMC-API
 
   *to:* https://github.com/tiacsys/TMC-API
 
   > The **TMC-API** is a portable C library for working with **Trinamic ICs** in embedded projects.
   > It is CPU-independent and self-contained (no external dependencies).
 
-- *from:* https://github.com/trinamic/TMC-EvalSystem
+- *from:* https://github.com/analogdevicesinc/TMC-EvalSystem
 
   *to:* https://github.com/tiacsys/TMC-EvalSystem
 
