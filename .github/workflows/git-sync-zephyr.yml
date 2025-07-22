@@ -22,7 +22,6 @@ jobs:
           - collab-mesh-subnet
           - collab-rust
           - collab-safety
-          - collab-sdk-0.18-dev
           - collab-sdk-dev
           - main
           - v4.2-branch
