@@ -4,8 +4,8 @@
 name: Sync KiCad Project Forks
 
 on:
-  schedule: # At every minute past hour 0, 4, 8, 12, 16, and 20.
-    - cron: '* 0,4,8,12,16,20 * * *'
+  schedule: # At minute 50 past every 4th hour.
+    - cron: '50 */4 * * *'
   workflow_dispatch: # And manually on button click.
 
 jobs:

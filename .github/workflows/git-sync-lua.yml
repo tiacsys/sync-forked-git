@@ -1,11 +1,11 @@
-# Copyright (c) 2021-2022 TiaC Systems
+# Copyright (c) 2021-2025 TiaC Systems
 # SPDX-License-Identifier: Unlicense
 
 name: Sync Lua Project Forks
 
 on:
-  schedule: # At every minute past hour 0, 4, 8, 12, 16, and 20.
-    - cron: '* 0,4,8,12,16,20 * * *'
+  schedule: # At minute 40 past every 4th hour.
+    - cron: '40 */4 * * *'
   workflow_dispatch: # And manually on button click.
 
 jobs:

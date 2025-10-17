@@ -4,8 +4,8 @@
 name: Sync ADI Trinamic Forks
 
 on:
-  schedule: # At every minute past hour 0, 4, 8, 12, 16, and 20.
-    - cron: '* 0,4,8,12,16,20 * * *'
+  schedule: # At 03:00.
+    - cron: '0 3 * * *'
   workflow_dispatch: # And manually on button click.
 
 jobs:
