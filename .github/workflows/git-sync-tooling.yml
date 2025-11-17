@@ -15,15 +15,27 @@ jobs:
     strategy:
       matrix:
         repo:
+          - kas
           - git-sync
           - ssh-setup
           - zephyr-setup
         branch:
           - main
           - master
+          - next
           - "refs/tags/*"
 
     steps:
+      - name: git-sync-tooling-kas
+        uses: tiacsys/git-sync@v3
+        with:
+          source_repo: "git@github.com:siemens/${{ matrix.repo }}.git"
+          source_branch: "${{ matrix.branch }}"
+          destination_repo: "git@github.com:tiacsys/${{ matrix.repo }}.git"
+          destination_branch: "${{ matrix.branch }}"
+          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY_TOOLING_KAS }}
+        if: ${{ matrix.repo == 'kas' && matrix.branch != 'main' }}  # no main
+
       - name: git-sync-tooling-git-sync
         uses: tiacsys/git-sync@v3
         with:
@@ -32,7 +44,7 @@ jobs:
           destination_repo: "git@github.com:tiacsys/${{ matrix.repo }}.git"
           destination_branch: "${{ matrix.branch }}"
           ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY_TOOLING_GIT_SYNC }}
-        if: ${{ matrix.repo == 'git-sync' && matrix.branch != 'main' }}  # no main
+        if: ${{ matrix.repo == 'git-sync' && matrix.branch == 'master' }}  # no main, no next
 
       - name: git-sync-tooling-ssh-setup
         uses: tiacsys/git-sync@v3
@@ -42,7 +54,7 @@ jobs:
           destination_repo: "git@github.com:tiacsys/${{ matrix.repo }}.git"
           destination_branch: "${{ matrix.branch }}"
           ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY_TOOLING_SSH_SETUP }}
-        if: ${{ matrix.repo == 'ssh-setup' && matrix.branch != 'master' }}  # no master
+        if: ${{ matrix.repo == 'ssh-setup' && matrix.branch == 'main' }}  # no master, no next
 
       - name: git-sync-tooling-zephyr-setup
         uses: tiacsys/git-sync@v3
@@ -52,4 +64,4 @@ jobs:
           destination_repo: "git@github.com:tiacsys/${{ matrix.repo }}.git"
           destination_branch: "${{ matrix.branch }}"
           ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY_TOOLING_ZEPHYR_SETUP }}
-        if: ${{ matrix.repo == 'zephyr-setup' && matrix.branch != 'master' }}  # no master
+        if: ${{ matrix.repo == 'zephyr-setup' && matrix.branch == 'main' }}  # no master, no next

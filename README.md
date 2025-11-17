@@ -8,6 +8,14 @@ Sync forked Git repositories with their origin.
 
 [![Sync Tooling Forks](https://github.com/tiacsys/sync-forked-git/actions/workflows/git-sync-tooling.yml/badge.svg)](https://github.com/tiacsys/sync-forked-git/actions/workflows/git-sync-tooling.yml)
 
+### [KAS](https://kas.readthedocs.io/)
+
+- *from:* https://github.com/siemens/kas
+
+  *to:* https://github.com/tiacsys/kas
+
+  > A **setup tool** for **bitbake based projects**.
+
 ### [Git Sync Action](https://github.com/marketplace/actions/git-sync-action)
 
 - *from:* https://github.com/wei/git-sync
