@@ -42,7 +42,7 @@ Sync forked Git repositories with their origin.
 
 ---
 
-## [CANnectivity](https://www.zephyrproject.org/)
+## [CANnectivity](https://cannectivity.org/)
 
 [![Sync CANnectivity Forks](https://github.com/tiacsys/sync-forked-git/actions/workflows/git-sync-cannectivity.yml/badge.svg)](https://github.com/tiacsys/sync-forked-git/actions/workflows/git-sync-cannectivity.yml)
 
