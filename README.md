@@ -42,6 +42,26 @@ Sync forked Git repositories with their origin.
 
 ---
 
+## [CANnectivity](https://www.zephyrproject.org/)
+
+[![Sync CANnectivity Forks](https://github.com/tiacsys/sync-forked-git/actions/workflows/git-sync-cannectivity.yml/badge.svg)](https://github.com/tiacsys/sync-forked-git/actions/workflows/git-sync-cannectivity.yml)
+
+- *from:* https://github.com/CANnectivity/cannectivity
+
+  *to:* https://github.com/tiacsys/cannectivity
+
+  > The **CANnectivity** Project is a **USB to CAN adapter firmware**.
+  > It implements the **Geschwister Schneider USB/CAN device protocol**
+  > (often referred to as `gs_usb`). This protocol is supported by the
+  > Linux kernel SocketCAN [gs_usb driver](https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/net/can/usb/gs_usb.c),
+  > by [python-can](https://python-can.readthedocs.io/en/stable/interfaces/gs_usb.html),
+  > and by many other software packages. The firmware, which is based
+  > on the [Zephyr RTOS](https://www.zephyrproject.org/), allows turning
+  > your favorite microcontroller development board into a full-fledged
+  > USB to CAN adapter.
+
+---
+
 ## [Zephyr](https://www.zephyrproject.org/)
 
 [![Sync Zephyr Project Forks](https://github.com/tiacsys/sync-forked-git/actions/workflows/git-sync-zephyr.yml/badge.svg)](https://github.com/tiacsys/sync-forked-git/actions/workflows/git-sync-zephyr.yml)
