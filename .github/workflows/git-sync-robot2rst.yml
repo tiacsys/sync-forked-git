@@ -1,11 +1,11 @@
-# Copyright (c) 2021-2025 TiaC Systems
+# Copyright (c) 2021-2026 TiaC Systems
 # SPDX-License-Identifier: Unlicense
 
 name: Sync robot2rst Project Forks
 
 on:
-  schedule: # At minute 20 past every 4th hour.
-    - cron: '20 */4 * * *'
+  schedule: # At 01:20.
+    - cron: '20 1 * * *'
   workflow_dispatch: # And manually on button click.
 
 jobs:

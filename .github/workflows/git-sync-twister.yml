@@ -1,11 +1,11 @@
-# Copyright (c) 2021-2025 TiaC Systems
+# Copyright (c) 2021-2026 TiaC Systems
 # SPDX-License-Identifier: Unlicense
 
 name: Sync Twister v2 Forks
 
 on:
-  schedule: # At minute 10 past every 4th hour.
-    - cron: '10 */4 * * *'
+  schedule: # At 01:10.
+    - cron: '10 1 * * *'
   workflow_dispatch: # And manually on button click.
 
 jobs:

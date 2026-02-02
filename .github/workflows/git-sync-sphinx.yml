@@ -1,11 +1,11 @@
-# Copyright (c) 2021-2025 TiaC Systems
+# Copyright (c) 2021-2026 TiaC Systems
 # SPDX-License-Identifier: Unlicense
 
 name: Sync Sphinx Forks
 
 on:
-  schedule: # At minute 0 past every 6th hour.
-    - cron: '0 */6 * * *'
+  schedule: # At 01:05.
+    - cron: '5 1 * * *'
   workflow_dispatch: # And manually on button click.
 
 jobs:
