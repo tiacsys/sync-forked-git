@@ -18,9 +18,6 @@ jobs:
           - zephyr
         branch:
           - collab-hwm
-          - collab-init
-          - collab-mesh-subnet
-          - collab-rust
           - collab-safety
           - collab-sdk-dev
           - main
