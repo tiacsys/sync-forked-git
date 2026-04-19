@@ -19,6 +19,7 @@ jobs:
         branch:
           - collab-hwm
           - collab-safety
+          - collab-sca
           - collab-sdk-dev
           - main
           - v4.3-branch
