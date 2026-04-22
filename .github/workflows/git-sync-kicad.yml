@@ -9,11 +9,14 @@ on:
   workflow_dispatch: # And manually on button click.
 
 jobs:
-  git-sync:
+  libs-git-sync:
+    name: Sync Libraries
     runs-on: ubuntu-latest
 
     strategy:
       matrix:
+        org:
+          - "${{ vars.BASE_URI_GH_TIACSYS_PRIVATE }}"
         repo:
           - kicad-symbols
           - kicad-footprints
@@ -22,81 +25,23 @@ jobs:
           - kicad-library-utils
           - kicad-templates
         branch:
-          - dev
-          - master
-          - v9
-          - v8
-          - v7
-          - v6
-          - v5
+          - "refs/heads/*"
           - "refs/tags/*"
 
     steps:
-      - name: git-sync-kicad-symbols
-        uses: tiacsys/git-sync@v3
-        with:
-          source_repo: "https://gitlab.com/kicad/libraries/${{ matrix.repo }}.git"
-          source_branch: "${{ matrix.branch }}"
-          destination_repo: "git@github.com:tiacsys/${{ matrix.repo }}.git"
-          destination_branch: "${{ matrix.branch }}"
-          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY_KICAD_SYMBOLS }}
-        if: ${{ matrix.repo == 'kicad-symbols' && matrix.branch != 'v9'
-                                               && matrix.branch != 'dev' }}  # no since v9 / no dev
+      - name: Generate Secret String
+        run: |
+          varname_prefix="SSH_PRIVATE_KEY_"
+          varname_unique="$(echo '${{ matrix.repo }}' | tr '[:punct:]' '_' | tr '[:lower:]' '[:upper:]')"
+          varname_suffix=""
+          varname=${varname_prefix}${varname_unique}${varname_suffix}
+          echo "SECRET_STRING=${varname}" >> $GITHUB_ENV
 
-      - name: git-sync-kicad-footprints
+      - name: Sync Git Refspecs
         uses: tiacsys/git-sync@v3
         with:
-          source_repo: "https://gitlab.com/kicad/libraries/${{ matrix.repo }}.git"
+          source_repo: "${{ vars.BASE_URI_GL_KICAD_LIBRARIES_PUBLIC }}/${{ matrix.repo }}.git"
           source_branch: "${{ matrix.branch }}"
-          destination_repo: "git@github.com:tiacsys/${{ matrix.repo }}.git"
+          destination_repo: "${{ matrix.org }}/${{ matrix.repo }}.git"
           destination_branch: "${{ matrix.branch }}"
-          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY_KICAD_FOOTPRINTS }}
-        if: ${{ matrix.repo == 'kicad-footprints' && matrix.branch != 'v9' }}  # no since v9
-
-      - name: git-sync-kicad-packages3D
-        uses: tiacsys/git-sync@v3
-        with:
-          source_repo: "https://gitlab.com/kicad/libraries/${{ matrix.repo }}.git"
-          source_branch: "${{ matrix.branch }}"
-          destination_repo: "git@github.com:tiacsys/${{ matrix.repo }}.git"
-          destination_branch: "${{ matrix.branch }}"
-          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY_KICAD_PACKAGES3D }}
-        if: ${{ matrix.repo == 'kicad-packages3D' && matrix.branch != 'v7'
-                                                  && matrix.branch != 'v8'
-                                                  && matrix.branch != 'v9' }}  # no since v7
-
-      - name: git-sync-kicad-packages3D-source
-        uses: tiacsys/git-sync@v3
-        with:
-          source_repo: "https://gitlab.com/kicad/libraries/${{ matrix.repo }}.git"
-          source_branch: "${{ matrix.branch }}"
-          destination_repo: "git@github.com:tiacsys/${{ matrix.repo }}.git"
-          destination_branch: "${{ matrix.branch }}"
-          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY_KICAD_PACKAGES3D_SOURCE }}
-        if: ${{ matrix.repo == 'kicad-packages3D-source' && matrix.branch != 'v6'
-                                                         && matrix.branch != 'v7'
-                                                         && matrix.branch != 'v8'
-                                                         && matrix.branch != 'v9'
-                                                         && matrix.branch != 'dev' }}  # no since v6 / no dev
-
-      - name: git-sync-kicad-library-utils
-        uses: tiacsys/git-sync@v3
-        with:
-          source_repo: "https://gitlab.com/kicad/libraries/${{ matrix.repo }}.git"
-          source_branch: "${{ matrix.branch }}"
-          destination_repo: "git@github.com:tiacsys/${{ matrix.repo }}.git"
-          destination_branch: "${{ matrix.branch }}"
-          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY_KICAD_LIBRARY_UTILS }}
-        if: ${{ matrix.repo == 'kicad-library-utils' && matrix.branch != 'v7'
-                                                     && matrix.branch != 'v9'
-                                                     && matrix.branch != 'dev' }}  # no since v7, v9 / no dev
-
-      - name: git-sync-kicad-templates
-        uses: tiacsys/git-sync@v3
-        with:
-          source_repo: "https://gitlab.com/kicad/libraries/${{ matrix.repo }}.git"
-          source_branch: "${{ matrix.branch }}"
-          destination_repo: "git@github.com:tiacsys/${{ matrix.repo }}.git"
-          destination_branch: "${{ matrix.branch }}"
-          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY_KICAD_TEMPLATES }}
-        if: ${{ matrix.repo == 'kicad-templates' && matrix.branch != 'v6' }}  # no v6
+          ssh_private_key: "${{ secrets[env.SECRET_STRING] }}"
