@@ -9,35 +9,35 @@ on:
   workflow_dispatch: # And manually on button click.
 
 jobs:
-  git-sync:
+  tmc-git-sync:
+    name: Sync Trinamic
     runs-on: ubuntu-latest
 
     strategy:
       matrix:
+        org:
+          - "${{ vars.BASE_URI_GH_TIACSYS_PRIVATE }}"
         repo:
           - TMC-API
           - TMC-EvalSystem
         branch:
-          - master
+          - "refs/heads/*"
           - "refs/tags/*"
 
     steps:
-      - name: git-sync-tmcapi
-        uses: tiacsys/git-sync@v3
-        with:
-          source_repo: "git@github.com:analogdevicesinc/${{ matrix.repo }}.git"
-          source_branch: "${{ matrix.branch }}"
-          destination_repo: "git@github.com:tiacsys/${{ matrix.repo }}.git"
-          destination_branch: "${{ matrix.branch }}"
-          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY_TMCAPI }}
-        if: ${{ matrix.repo == 'TMC-API' }}
+      - name: Generate Secret String
+        run: |
+          varname_prefix="SSH_PRIVATE_KEY_"
+          varname_unique="$(echo '${{ matrix.repo }}' | tr '[:punct:]' '_' | tr '[:lower:]' '[:upper:]')"
+          varname_suffix=""
+          varname=${varname_prefix}${varname_unique}${varname_suffix}
+          echo "SECRET_STRING=${varname}" >> $GITHUB_ENV
 
-      - name: git-sync-tmcesfw
+      - name: Sync Git Refspecs
         uses: tiacsys/git-sync@v3
         with:
-          source_repo: "git@github.com:analogdevicesinc/${{ matrix.repo }}.git"
+          source_repo: "${{ vars.BASE_URI_GH_ADI_PUBLIC }}/${{ matrix.repo }}.git"
           source_branch: "${{ matrix.branch }}"
-          destination_repo: "git@github.com:tiacsys/${{ matrix.repo }}.git"
+          destination_repo: "${{ matrix.org }}/${{ matrix.repo }}.git"
           destination_branch: "${{ matrix.branch }}"
-          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY_TMCESFW }}
-        if: ${{ matrix.repo == 'TMC-EvalSystem' }}
+          ssh_private_key: "${{ secrets[env.SECRET_STRING] }}"
