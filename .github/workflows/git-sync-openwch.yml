@@ -9,11 +9,14 @@ on:
   workflow_dispatch: # And manually on button click.
 
 jobs:
-  git-sync:
+  openwch-git-sync:
+    name: Sync OpenWCH
     runs-on: ubuntu-latest
 
     strategy:
       matrix:
+        org:
+          - "${{ vars.BASE_URI_GH_TIACSYS_PRIVATE }}"
         repo:
           - ch32f20x
           - ch32l103
@@ -32,166 +35,23 @@ jobs:
           - ch641
           - ch643
         branch:
-          - main
-          # OFF, because OpenWCH has no tags anywhere upstream "refs/tags/*"
+          - "refs/heads/*"
+          - "refs/tags/*"
 
     steps:
-      - name: git-sync-ch32f20x
-        uses: tiacsys/git-sync@v3
-        with:
-          source_repo: "git@github.com:openwch/${{ matrix.repo }}.git"
-          source_branch: "${{ matrix.branch }}"
-          destination_repo: "git@github.com:tiacsys/openwch-${{ matrix.repo }}.git"
-          destination_branch: "${{ matrix.branch }}"
-          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY_CH32F20X }}
-        if: ${{ matrix.repo == 'ch32f20x' }}
+      - name: Generate Secret String
+        run: |
+          varname_prefix="SSH_PRIVATE_KEY_"
+          varname_unique="$(echo '${{ matrix.repo }}' | tr '[:punct:]' '_' | tr '[:lower:]' '[:upper:]')"
+          varname_suffix=""
+          varname=${varname_prefix}${varname_unique}${varname_suffix}
+          echo "SECRET_STRING=${varname}" >> $GITHUB_ENV
 
-      - name: git-sync-ch32l103
+      - name: Sync Git Refspecs
         uses: tiacsys/git-sync@v3
         with:
-          source_repo: "git@github.com:openwch/${{ matrix.repo }}.git"
+          source_repo: "${{ vars.BASE_URI_GH_OPENWCH_PUBLIC }}/${{ matrix.repo }}.git"
           source_branch: "${{ matrix.branch }}"
-          destination_repo: "git@github.com:tiacsys/openwch-${{ matrix.repo }}.git"
+          destination_repo: "${{ matrix.org }}/openwch-${{ matrix.repo }}.git"
           destination_branch: "${{ matrix.branch }}"
-          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY_CH32L103 }}
-        if: ${{ matrix.repo == 'ch32l103' }}
-
-      - name: git-sync-ch32m030
-        uses: tiacsys/git-sync@v3
-        with:
-          source_repo: "git@github.com:openwch/${{ matrix.repo }}.git"
-          source_branch: "${{ matrix.branch }}"
-          destination_repo: "git@github.com:tiacsys/openwch-${{ matrix.repo }}.git"
-          destination_branch: "${{ matrix.branch }}"
-          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY_CH32M030 }}
-        if: ${{ matrix.repo == 'ch32m030' }}
-
-      - name: git-sync-ch32v002_004_005_006_007
-        uses: tiacsys/git-sync@v3
-        with:
-          source_repo: "git@github.com:openwch/${{ matrix.repo }}.git"
-          source_branch: "${{ matrix.branch }}"
-          destination_repo: "git@github.com:tiacsys/openwch-${{ matrix.repo }}.git"
-          destination_branch: "${{ matrix.branch }}"
-          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY_CH32V002_004_005_006_007 }}
-        if: ${{ matrix.repo == 'ch32v002_004_005_006_007' }}
-
-      - name: git-sync-ch32v003
-        uses: tiacsys/git-sync@v3
-        with:
-          source_repo: "git@github.com:openwch/${{ matrix.repo }}.git"
-          source_branch: "${{ matrix.branch }}"
-          destination_repo: "git@github.com:tiacsys/openwch-${{ matrix.repo }}.git"
-          destination_branch: "${{ matrix.branch }}"
-          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY_CH32V003 }}
-        if: ${{ matrix.repo == 'ch32v003' }}
-
-      - name: git-sync-ch32v103
-        uses: tiacsys/git-sync@v3
-        with:
-          source_repo: "git@github.com:openwch/${{ matrix.repo }}.git"
-          source_branch: "${{ matrix.branch }}"
-          destination_repo: "git@github.com:tiacsys/openwch-${{ matrix.repo }}.git"
-          destination_branch: "${{ matrix.branch }}"
-          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY_CH32V103 }}
-        if: ${{ matrix.repo == 'ch32v103' }}
-
-      - name: git-sync-ch32v20x
-        uses: tiacsys/git-sync@v3
-        with:
-          source_repo: "git@github.com:openwch/${{ matrix.repo }}.git"
-          source_branch: "${{ matrix.branch }}"
-          destination_repo: "git@github.com:tiacsys/openwch-${{ matrix.repo }}.git"
-          destination_branch: "${{ matrix.branch }}"
-          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY_CH32V20X }}
-        if: ${{ matrix.repo == 'ch32v20x' }}
-
-      - name: git-sync-ch32v307
-        uses: tiacsys/git-sync@v3
-        with:
-          source_repo: "git@github.com:openwch/${{ matrix.repo }}.git"
-          source_branch: "${{ matrix.branch }}"
-          destination_repo: "git@github.com:tiacsys/openwch-${{ matrix.repo }}.git"
-          destination_branch: "${{ matrix.branch }}"
-          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY_CH32V307 }}
-        if: ${{ matrix.repo == 'ch32v307' }}
-
-      - name: git-sync-ch32x035
-        uses: tiacsys/git-sync@v3
-        with:
-          source_repo: "git@github.com:openwch/${{ matrix.repo }}.git"
-          source_branch: "${{ matrix.branch }}"
-          destination_repo: "git@github.com:tiacsys/openwch-${{ matrix.repo }}.git"
-          destination_branch: "${{ matrix.branch }}"
-          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY_CH32X035 }}
-        if: ${{ matrix.repo == 'ch32x035' }}
-
-      - name: git-sync-ch569
-        uses: tiacsys/git-sync@v3
-        with:
-          source_repo: "git@github.com:openwch/${{ matrix.repo }}.git"
-          source_branch: "${{ matrix.branch }}"
-          destination_repo: "git@github.com:tiacsys/openwch-${{ matrix.repo }}.git"
-          destination_branch: "${{ matrix.branch }}"
-          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY_CH569 }}
-        if: ${{ matrix.repo == 'ch569' }}
-
-      - name: git-sync-ch570
-        uses: tiacsys/git-sync@v3
-        with:
-          source_repo: "git@github.com:openwch/${{ matrix.repo }}.git"
-          source_branch: "${{ matrix.branch }}"
-          destination_repo: "git@github.com:tiacsys/openwch-${{ matrix.repo }}.git"
-          destination_branch: "${{ matrix.branch }}"
-          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY_CH570 }}
-        if: ${{ matrix.repo == 'ch570' }}
-
-      - name: git-sync-ch583
-        uses: tiacsys/git-sync@v3
-        with:
-          source_repo: "git@github.com:openwch/${{ matrix.repo }}.git"
-          source_branch: "${{ matrix.branch }}"
-          destination_repo: "git@github.com:tiacsys/openwch-${{ matrix.repo }}.git"
-          destination_branch: "${{ matrix.branch }}"
-          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY_CH583 }}
-        if: ${{ matrix.repo == 'ch583' }}
-
-      - name: git-sync-ch585
-        uses: tiacsys/git-sync@v3
-        with:
-          source_repo: "git@github.com:openwch/${{ matrix.repo }}.git"
-          source_branch: "${{ matrix.branch }}"
-          destination_repo: "git@github.com:tiacsys/openwch-${{ matrix.repo }}.git"
-          destination_branch: "${{ matrix.branch }}"
-          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY_CH585 }}
-        if: ${{ matrix.repo == 'ch585' }}
-
-      - name: git-sync-ch592
-        uses: tiacsys/git-sync@v3
-        with:
-          source_repo: "git@github.com:openwch/${{ matrix.repo }}.git"
-          source_branch: "${{ matrix.branch }}"
-          destination_repo: "git@github.com:tiacsys/openwch-${{ matrix.repo }}.git"
-          destination_branch: "${{ matrix.branch }}"
-          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY_CH592 }}
-        if: ${{ matrix.repo == 'ch592' }}
-
-      - name: git-sync-ch641
-        uses: tiacsys/git-sync@v3
-        with:
-          source_repo: "git@github.com:openwch/${{ matrix.repo }}.git"
-          source_branch: "${{ matrix.branch }}"
-          destination_repo: "git@github.com:tiacsys/openwch-${{ matrix.repo }}.git"
-          destination_branch: "${{ matrix.branch }}"
-          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY_CH641 }}
-        if: ${{ matrix.repo == 'ch641' }}
-
-      - name: git-sync-ch643
-        uses: tiacsys/git-sync@v3
-        with:
-          source_repo: "git@github.com:openwch/${{ matrix.repo }}.git"
-          source_branch: "${{ matrix.branch }}"
-          destination_repo: "git@github.com:tiacsys/openwch-${{ matrix.repo }}.git"
-          destination_branch: "${{ matrix.branch }}"
-          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY_CH643 }}
-        if: ${{ matrix.repo == 'ch643' }}
+          ssh_private_key: "${{ secrets[env.SECRET_STRING] }}"
