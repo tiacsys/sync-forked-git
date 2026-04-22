@@ -9,24 +9,34 @@ on:
   workflow_dispatch: # And manually on button click.
 
 jobs:
-  git-sync:
+  ql-git-sync:
+    name: Sync Quantum Leaps
     runs-on: ubuntu-latest
 
     strategy:
       matrix:
+        org:
+          - "${{ vars.BASE_URI_GH_TIACSYS_PRIVATE }}"
         repo:
           - qpc
         branch:
-          - master
+          - "refs/heads/*"
           - "refs/tags/*"
 
     steps:
-      - name: git-sync-qpc
+      - name: Generate Secret String
+        run: |
+          varname_prefix="SSH_PRIVATE_KEY_"
+          varname_unique="$(echo '${{ matrix.repo }}' | tr '[:punct:]' '_' | tr '[:lower:]' '[:upper:]')"
+          varname_suffix=""
+          varname=${varname_prefix}${varname_unique}${varname_suffix}
+          echo "SECRET_STRING=${varname}" >> $GITHUB_ENV
+
+      - name: Sync Git Refspecs
         uses: tiacsys/git-sync@v3
         with:
-          source_repo: "git@github.com:QuantumLeaps/${{ matrix.repo }}.git"
+          source_repo: "${{ vars.BASE_URI_GH_QUANTUMLEAPS_PUBLIC }}/${{ matrix.repo }}.git"
           source_branch: "${{ matrix.branch }}"
-          destination_repo: "git@github.com:tiacsys/${{ matrix.repo }}.git"
+          destination_repo: "${{ matrix.org }}/${{ matrix.repo }}.git"
           destination_branch: "${{ matrix.branch }}"
-          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY_QPC }}
-        if: ${{ matrix.repo == 'qpc' }}
+          ssh_private_key: "${{ secrets[env.SECRET_STRING] }}"
