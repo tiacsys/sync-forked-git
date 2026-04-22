@@ -9,59 +9,130 @@ on:
   workflow_dispatch: # And manually on button click.
 
 jobs:
-  git-sync:
+  zephyr-gha-git-sync:
+    name: Sync Zephyr GitHub Actions
     runs-on: ubuntu-latest
 
     strategy:
       matrix:
+        org:
+          - "${{ vars.BASE_URI_GH_TIACSYS_PRIVATE }}"
         repo:
-          - kas
-          - git-sync
-          - ssh-setup
           - zephyr-setup
         branch:
-          - main
-          - master
-          - next
+          - "refs/heads/*"
           - "refs/tags/*"
 
     steps:
-      - name: git-sync-tooling-kas
-        uses: tiacsys/git-sync@v3
-        with:
-          source_repo: "git@github.com:siemens/${{ matrix.repo }}.git"
-          source_branch: "${{ matrix.branch }}"
-          destination_repo: "git@github.com:tiacsys/${{ matrix.repo }}.git"
-          destination_branch: "${{ matrix.branch }}"
-          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY_TOOLING_KAS }}
-        if: ${{ matrix.repo == 'kas' && matrix.branch != 'main' }}  # no main
+      - name: Generate Secret String
+        run: |
+          varname_prefix="SSH_PRIVATE_KEY_TOOLING_"
+          varname_unique="$(echo '${{ matrix.repo }}' | tr '[:punct:]' '_' | tr '[:lower:]' '[:upper:]')"
+          varname_suffix=""
+          varname=${varname_prefix}${varname_unique}${varname_suffix}
+          echo "SECRET_STRING=${varname}" >> $GITHUB_ENV
 
-      - name: git-sync-tooling-git-sync
+      - name: Sync Git Refspecs
         uses: tiacsys/git-sync@v3
         with:
-          source_repo: "git@github.com:wei/${{ matrix.repo }}.git"
+          source_repo: "${{ vars.BASE_URI_GH_ZEPHYR_PROJECT_PUBLIC }}/action-${{ matrix.repo }}.git"
           source_branch: "${{ matrix.branch }}"
-          destination_repo: "git@github.com:tiacsys/${{ matrix.repo }}.git"
+          destination_repo: "${{ matrix.org }}/${{ matrix.repo }}.git"
           destination_branch: "${{ matrix.branch }}"
-          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY_TOOLING_GIT_SYNC }}
-        if: ${{ matrix.repo == 'git-sync' && matrix.branch == 'master' }}  # no main, no next
+          ssh_private_key: "${{ secrets[env.SECRET_STRING] }}"
 
-      - name: git-sync-tooling-ssh-setup
-        uses: tiacsys/git-sync@v3
-        with:
-          source_repo: "git@github.com:MrSquaare/${{ matrix.repo }}-action.git"
-          source_branch: "${{ matrix.branch }}"
-          destination_repo: "git@github.com:tiacsys/${{ matrix.repo }}.git"
-          destination_branch: "${{ matrix.branch }}"
-          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY_TOOLING_SSH_SETUP }}
-        if: ${{ matrix.repo == 'ssh-setup' && matrix.branch == 'main' }}  # no master, no next
+  siemens-git-sync:
+    name: Sync Siemens
+    runs-on: ubuntu-latest
 
-      - name: git-sync-tooling-zephyr-setup
+    strategy:
+      matrix:
+        org:
+          - "${{ vars.BASE_URI_GH_TIACSYS_PRIVATE }}"
+        repo:
+          - kas
+        branch:
+          - "refs/heads/*"
+          - "refs/tags/*"
+
+    steps:
+      - name: Generate Secret String
+        run: |
+          varname_prefix="SSH_PRIVATE_KEY_TOOLING_"
+          varname_unique="$(echo '${{ matrix.repo }}' | tr '[:punct:]' '_' | tr '[:lower:]' '[:upper:]')"
+          varname_suffix=""
+          varname=${varname_prefix}${varname_unique}${varname_suffix}
+          echo "SECRET_STRING=${varname}" >> $GITHUB_ENV
+
+      - name: Sync Git Refspecs
         uses: tiacsys/git-sync@v3
         with:
-          source_repo: "git@github.com:zephyrproject-rtos/action-${{ matrix.repo }}.git"
+          source_repo: "${{ vars.BASE_URI_GH_SIEMENS_PUBLIC }}/${{ matrix.repo }}.git"
           source_branch: "${{ matrix.branch }}"
-          destination_repo: "git@github.com:tiacsys/${{ matrix.repo }}.git"
+          destination_repo: "${{ matrix.org }}/${{ matrix.repo }}.git"
           destination_branch: "${{ matrix.branch }}"
-          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY_TOOLING_ZEPHYR_SETUP }}
-        if: ${{ matrix.repo == 'zephyr-setup' && matrix.branch == 'main' }}  # no master, no next
+          ssh_private_key: "${{ secrets[env.SECRET_STRING] }}"
+
+  wei-git-sync:
+    name: Sync Wei He
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        org:
+          - "${{ vars.BASE_URI_GH_TIACSYS_PRIVATE }}"
+        repo:
+          - git-sync
+        branch:
+          - "refs/heads/*"
+          - "refs/tags/*"
+
+    steps:
+      - name: Generate Secret String
+        run: |
+          varname_prefix="SSH_PRIVATE_KEY_TOOLING_"
+          varname_unique="$(echo '${{ matrix.repo }}' | tr '[:punct:]' '_' | tr '[:lower:]' '[:upper:]')"
+          varname_suffix=""
+          varname=${varname_prefix}${varname_unique}${varname_suffix}
+          echo "SECRET_STRING=${varname}" >> $GITHUB_ENV
+
+      - name: Sync Git Refspecs
+        uses: tiacsys/git-sync@v3
+        with:
+          source_repo: "${{ vars.BASE_URI_GH_WEI_PUBLIC }}/${{ matrix.repo }}.git"
+          source_branch: "${{ matrix.branch }}"
+          destination_repo: "${{ matrix.org }}/${{ matrix.repo }}.git"
+          destination_branch: "${{ matrix.branch }}"
+          ssh_private_key: "${{ secrets[env.SECRET_STRING] }}"
+
+  mrsquaare-gha-git-sync:
+    name: Sync Guillaume Bonnet GitHub Actions
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        org:
+          - "${{ vars.BASE_URI_GH_TIACSYS_PRIVATE }}"
+        repo:
+          - ssh-setup
+        branch:
+          - "refs/heads/*"
+          - "refs/tags/*"
+
+    steps:
+      - name: Generate Secret String
+        run: |
+          varname_prefix="SSH_PRIVATE_KEY_TOOLING_"
+          varname_unique="$(echo '${{ matrix.repo }}' | tr '[:punct:]' '_' | tr '[:lower:]' '[:upper:]')"
+          varname_suffix=""
+          varname=${varname_prefix}${varname_unique}${varname_suffix}
+          echo "SECRET_STRING=${varname}" >> $GITHUB_ENV
+
+      - name: Sync Git Refspecs
+        uses: tiacsys/git-sync@v3
+        with:
+          source_repo: "${{ vars.BASE_URI_GH_MRSQUAARE_PUBLIC }}/${{ matrix.repo }}-action.git"
+          source_branch: "${{ matrix.branch }}"
+          destination_repo: "${{ matrix.org }}/${{ matrix.repo }}.git"
+          destination_branch: "${{ matrix.branch }}"
+          ssh_private_key: "${{ secrets[env.SECRET_STRING] }}"
