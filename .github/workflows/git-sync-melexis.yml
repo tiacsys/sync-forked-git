@@ -1,0 +1,84 @@
+# Copyright (c) 2021-2026 TiaC Systems
+# SPDX-License-Identifier: Unlicense
+
+name: Sync Melexis OS Team Forks
+
+on:
+  schedule: # At 01:15.
+    - cron: '15 1 * * *'
+  workflow_dispatch: # And manually on button click.
+
+jobs:
+  melexis-git-sync:
+    name: Sync Melexis
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        org:
+          - "${{ vars.BASE_URI_GH_TIACSYS_PRIVATE }}"
+        repo:
+          - robot2rst
+          - xunit2rst
+        branch:
+          - master
+          - "refs/tags/*"
+
+    steps:
+      - name: Generate Secret String
+        run: |
+          varname_prefix="SSH_PRIVATE_KEY_"
+          varname_unique="$(echo '${{ matrix.repo }}' | tr '[:punct:]' '_' | tr '[:lower:]' '[:upper:]')"
+          varname_suffix=""
+          varname=${varname_prefix}${varname_unique}${varname_suffix}
+          echo "SECRET_STRING=${varname}" >> $GITHUB_ENV
+
+      - name: Sync Git Refspecs
+        uses: tiacsys/git-sync@v3
+        with:
+          source_repo: "${{ vars.BASE_URI_GH_MELEXIS_PUBLIC }}/${{ matrix.repo }}.git"
+          source_branch: "${{ matrix.branch }}"
+          destination_repo: "${{ matrix.org }}/${{ matrix.repo }}.git"
+          destination_branch: "${{ matrix.branch }}"
+          ssh_private_key: "${{ secrets[env.SECRET_STRING] }}"
+
+  melexis-git-rebase:
+    name: Rebase Melexis
+    runs-on: ubuntu-latest
+
+    needs: melexis-git-sync
+
+    strategy:
+      matrix:
+        org:
+          - "${{ vars.BASE_URI_GH_TIACSYS_PRIVATE }}"
+        repo:
+          - robot2rst
+          - xunit2rst
+        branch:
+          - master
+
+    steps:
+      - name: Generate Secret String
+        run: |
+          varname_prefix="SSH_PRIVATE_KEY_"
+          varname_unique="$(echo '${{ matrix.repo }}' | tr '[:punct:]' '_' | tr '[:lower:]' '[:upper:]')"
+          varname_suffix=""
+          varname=${varname_prefix}${varname_unique}${varname_suffix}
+          echo "SECRET_STRING=${varname}" >> $GITHUB_ENV
+
+      - name: Generate Prefix String
+        run: |
+          varname_prefix="GIT_REBASE_"
+          varname_unique="$(echo '${{ matrix.org }}' | tr '[:punct:]' '_' | tr '[:lower:]' '[:upper:]')"
+          varname_suffix="_BRANCH_PREFIX"
+          varname=${varname_prefix}${varname_unique}${varname_suffix}
+          echo "PREFIX_STRING=${varname}" >> $GITHUB_ENV
+
+      - name: Rebase Custodians
+        uses: tiacsys/git-rebase@v1
+        with:
+          repo: "${{ matrix.org }}/${{ matrix.repo }}.git"
+          source_branch: "${{ vars[env.PREFIX_STRING] }}/${{ matrix.branch }}"
+          destination_branch: "${{ matrix.branch }}"
+          ssh_private_key: "${{ secrets[env.SECRET_STRING] }}"
