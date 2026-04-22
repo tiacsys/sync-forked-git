@@ -1,7 +1,7 @@
 # Copyright (c) 2021-2026 TiaC Systems
 # SPDX-License-Identifier: Unlicense
 
-name: Sync NASA Forks
+name: Sync NASA Software V&V Forks
 
 on:
   schedule: # At 01:30.
@@ -9,35 +9,35 @@ on:
   workflow_dispatch: # And manually on button click.
 
 jobs:
-  git-sync:
+  nasa-git-sync:
+    name: Sync NASA
     runs-on: ubuntu-latest
 
     strategy:
       matrix:
+        org:
+          - "${{ vars.BASE_URI_GH_TIACSYS_PRIVATE }}"
         repo:
           - ikos
           - fret
         branch:
-          - master
+          - "refs/heads/*"
           - "refs/tags/*"
 
     steps:
-      - name: git-sync-ikos
-        uses: tiacsys/git-sync@v3
-        with:
-          source_repo: "git@github.com:NASA-SW-VnV/${{ matrix.repo }}.git"
-          source_branch: "${{ matrix.branch }}"
-          destination_repo: "git@github.com:tiacsys/${{ matrix.repo }}.git"
-          destination_branch: "${{ matrix.branch }}"
-          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY_IKOS }}
-        if: ${{ matrix.repo == 'ikos' }}
+      - name: Generate Secret String
+        run: |
+          varname_prefix="SSH_PRIVATE_KEY_"
+          varname_unique="$(echo '${{ matrix.repo }}' | tr '[:punct:]' '_' | tr '[:lower:]' '[:upper:]')"
+          varname_suffix=""
+          varname=${varname_prefix}${varname_unique}${varname_suffix}
+          echo "SECRET_STRING=${varname}" >> $GITHUB_ENV
 
-      - name: git-sync-fret
+      - name: Sync Git Refspecs
         uses: tiacsys/git-sync@v3
         with:
-          source_repo: "git@github.com:NASA-SW-VnV/${{ matrix.repo }}.git"
+          source_repo: "${{ vars.BASE_URI_GH_NASA_PUBLIC }}/${{ matrix.repo }}.git"
           source_branch: "${{ matrix.branch }}"
-          destination_repo: "git@github.com:tiacsys/${{ matrix.repo }}.git"
+          destination_repo: "${{ matrix.org }}/${{ matrix.repo }}.git"
           destination_branch: "${{ matrix.branch }}"
-          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY_FRET }}
-        if: ${{ matrix.repo == 'fret' }}
+          ssh_private_key: "${{ secrets[env.SECRET_STRING] }}"
