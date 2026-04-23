@@ -1,0 +1,24 @@
+to:
+  - git@github.com:tiacsys
+from:
+  - https://github.com/openwch
+repo:
+  - ch32f20x
+  - ch32l103
+  - ch32m030
+  - ch32v002_004_005_006_007
+  - ch32v003
+  - ch32v103
+  - ch32v20x
+  - ch32v307
+  - ch32x035
+  - ch569
+  - ch570
+  - ch583
+  - ch585
+  - ch592
+  - ch641
+  - ch643
+refspec:
+  - "refs/heads/*"
+  - "refs/tags/*"
