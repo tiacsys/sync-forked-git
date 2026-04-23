@@ -1,0 +1,10 @@
+to:
+  - git@github.com:tiacsys
+from:
+  - https://github.com/NASA-SW-VnV
+repo:
+  - ikos
+  - fret
+refspec:
+  - "refs/heads/*"
+  - "refs/tags/*"
