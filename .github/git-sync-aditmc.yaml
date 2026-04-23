@@ -1,0 +1,10 @@
+to:
+  - git@github.com:tiacsys
+from:
+  - https://github.com/analogdevicesinc
+repo:
+  - TMC-API
+  - TMC-EvalSystem
+refspec:
+  - "refs/heads/*"
+  - "refs/tags/*"
