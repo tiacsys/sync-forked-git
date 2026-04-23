@@ -1,0 +1,7 @@
+on:
+  - git@github.com:tiacsys
+repo:
+  - robot2rst
+  - xunit2rst
+refspec:
+  - master

@@ -1,0 +1,10 @@
+to:
+  - git@github.com:tiacsys
+from:
+  - https://github.com/melexis
+repo:
+  - robot2rst
+  - xunit2rst
+refspec:
+  - master
+  - "refs/tags/*"
