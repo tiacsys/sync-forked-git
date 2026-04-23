@@ -1,0 +1,10 @@
+on:
+  - git@github.com:tiacsys
+repo:
+  - cannectivity
+refspec:
+  - main
+  - v1.3-branch
+  - v1.2-branch
+  - v1.1-branch
+  - v1.0-branch
