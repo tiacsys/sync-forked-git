@@ -1,0 +1,9 @@
+to:
+  - git@github.com:tiacsys
+from:
+  - https://github.com/QuantumLeaps
+repo:
+  - qpc
+refspec:
+  - "refs/heads/*"
+  - "refs/tags/*"
