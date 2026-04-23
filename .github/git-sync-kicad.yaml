@@ -1,0 +1,14 @@
+to:
+  - git@github.com:tiacsys
+from:
+  - https://gitlab.com/kicad/libraries
+repo:
+  - kicad-symbols
+  - kicad-footprints
+  - kicad-packages3D
+  - kicad-packages3D-source
+  - kicad-library-utils
+  - kicad-templates
+refspec:
+  - "refs/heads/*"
+  - "refs/tags/*"
