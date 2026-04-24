@@ -1,0 +1,45 @@
+to:
+  - git@github.com:tiacsys
+from:
+  - https://github.com/zephyrproject-rtos
+repo:
+  - zephyr
+refspec:
+  - collab-hwm
+  - collab-safety
+  - collab-sca
+  - collab-sdk-dev
+  - main
+  - v4.4-branch
+  - v4.3-branch
+  - v4.2-branch
+  - v4.1-branch
+  - v4.0-branch
+  - v3.7-branch
+  - v3.6-branch
+  - v3.5-branch
+  - v3.4-branch
+  - v3.3-branch
+  - v3.2-branch
+  - v3.1-branch
+  - v3.0-branch
+  - v2.7-auditable-branch
+  - v2.7-branch
+  - v2.6-branch
+  - v2.5-branch
+  - v2.4-branch
+  - v2.3-branch
+  - v2.2-branch
+  - v2.1-branch
+  - v2.0-branch
+  - v1.14-branch
+  - v1.13-branch
+  - v1.12-branch
+  - v1.11-branch
+  - v1.10-branch
+  - v1.9-branch
+  - v1.8-branch
+  - v1.7-branch
+  - v1.6-branch
+  - v1.5-branch
+  - "refs/tags/*"

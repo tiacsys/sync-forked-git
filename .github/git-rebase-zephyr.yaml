@@ -1,0 +1,22 @@
+on:
+  - git@github.com:tiacsys
+repo:
+  - zephyr
+refspec:
+  - main
+  - v4.4-branch
+  - v4.3-branch
+  - v4.2-branch
+  - v4.1-branch
+  - v4.0-branch
+  - v3.7-branch
+  - v3.6-branch
+  - v3.5-branch
+  - v3.4-branch
+  - v3.3-branch
+  - v3.2-branch
+  - v3.1-branch
+  - v3.0-branch
+  - v2.7-branch
+  - v2.6-branch
+  - v2.5-branch
