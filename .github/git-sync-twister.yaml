@@ -1,0 +1,9 @@
+to:
+  - git@github.com:tiacsys
+from:
+  - https://github.com/zephyrproject-rtos
+repo:
+  - twister
+refspec:
+  - "refs/heads/*"
+  - "refs/tags/*"
