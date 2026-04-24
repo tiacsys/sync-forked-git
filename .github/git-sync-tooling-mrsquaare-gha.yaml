@@ -1,0 +1,9 @@
+to:
+  - git@github.com:tiacsys
+from:
+  - https://github.com/MrSquaare
+repo:
+  - ssh-setup
+refspec:
+  - "refs/heads/*"
+  - "refs/tags/*"

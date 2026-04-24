@@ -1,0 +1,9 @@
+to:
+  - git@github.com:tiacsys
+from:
+  - https://github.com/wei
+repo:
+  - git-sync
+refspec:
+  - "refs/heads/*"
+  - "refs/tags/*"

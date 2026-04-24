@@ -11,128 +11,38 @@ on:
 jobs:
   zephyr-gha-git-sync:
     name: Sync Zephyr GitHub Actions
-    runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        org:
-          - "${{ vars.BASE_URI_GH_TIACSYS_PRIVATE }}"
-        repo:
-          - zephyr-setup
-        branch:
-          - "refs/heads/*"
-          - "refs/tags/*"
-
-    steps:
-      - name: Generate Secret String
-        run: |
-          varname_prefix="SSH_PRIVATE_KEY_TOOLING_"
-          varname_unique="$(echo '${{ matrix.repo }}' | tr '[:punct:]' '_' | tr '[:lower:]' '[:upper:]')"
-          varname_suffix=""
-          varname=${varname_prefix}${varname_unique}${varname_suffix}
-          echo "SECRET_STRING=${varname}" >> $GITHUB_ENV
-
-      - name: Sync Git Refspecs
-        uses: tiacsys/git-sync@v3
-        with:
-          source_repo: "${{ vars.BASE_URI_GH_ZEPHYR_PROJECT_PUBLIC }}/action-${{ matrix.repo }}.git"
-          source_branch: "${{ matrix.branch }}"
-          destination_repo: "${{ matrix.org }}/${{ matrix.repo }}.git"
-          destination_branch: "${{ matrix.branch }}"
-          ssh_private_key: "${{ secrets[env.SECRET_STRING] }}"
+    uses: tiacsys/github-workflows/.github/workflows/git-sync.yml@v2
+    with:
+      matrix: ./.github/git-sync-tooling-zephyr-gha.yaml
+      secret-prefix: "SSH_PRIVATE_KEY_TOOLING_"
+      from-repo-prefix: "action-"
+    secrets: inherit # pass all secrets
 
   siemens-git-sync:
     name: Sync Siemens
-    runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        org:
-          - "${{ vars.BASE_URI_GH_TIACSYS_PRIVATE }}"
-        repo:
-          - kas
-        branch:
-          - "refs/heads/*"
-          - "refs/tags/*"
-
-    steps:
-      - name: Generate Secret String
-        run: |
-          varname_prefix="SSH_PRIVATE_KEY_TOOLING_"
-          varname_unique="$(echo '${{ matrix.repo }}' | tr '[:punct:]' '_' | tr '[:lower:]' '[:upper:]')"
-          varname_suffix=""
-          varname=${varname_prefix}${varname_unique}${varname_suffix}
-          echo "SECRET_STRING=${varname}" >> $GITHUB_ENV
-
-      - name: Sync Git Refspecs
-        uses: tiacsys/git-sync@v3
-        with:
-          source_repo: "${{ vars.BASE_URI_GH_SIEMENS_PUBLIC }}/${{ matrix.repo }}.git"
-          source_branch: "${{ matrix.branch }}"
-          destination_repo: "${{ matrix.org }}/${{ matrix.repo }}.git"
-          destination_branch: "${{ matrix.branch }}"
-          ssh_private_key: "${{ secrets[env.SECRET_STRING] }}"
+    uses: tiacsys/github-workflows/.github/workflows/git-sync.yml@v2
+    with:
+      matrix: ./.github/git-sync-tooling-siemens.yaml
+      secret-prefix: "SSH_PRIVATE_KEY_TOOLING_"
+    secrets: inherit # pass all secrets
 
   wei-git-sync:
     name: Sync Wei He
-    runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        org:
-          - "${{ vars.BASE_URI_GH_TIACSYS_PRIVATE }}"
-        repo:
-          - git-sync
-        branch:
-          - "refs/heads/*"
-          - "refs/tags/*"
-
-    steps:
-      - name: Generate Secret String
-        run: |
-          varname_prefix="SSH_PRIVATE_KEY_TOOLING_"
-          varname_unique="$(echo '${{ matrix.repo }}' | tr '[:punct:]' '_' | tr '[:lower:]' '[:upper:]')"
-          varname_suffix=""
-          varname=${varname_prefix}${varname_unique}${varname_suffix}
-          echo "SECRET_STRING=${varname}" >> $GITHUB_ENV
-
-      - name: Sync Git Refspecs
-        uses: tiacsys/git-sync@v3
-        with:
-          source_repo: "${{ vars.BASE_URI_GH_WEI_PUBLIC }}/${{ matrix.repo }}.git"
-          source_branch: "${{ matrix.branch }}"
-          destination_repo: "${{ matrix.org }}/${{ matrix.repo }}.git"
-          destination_branch: "${{ matrix.branch }}"
-          ssh_private_key: "${{ secrets[env.SECRET_STRING] }}"
+    uses: tiacsys/github-workflows/.github/workflows/git-sync.yml@v2
+    with:
+      matrix: ./.github/git-sync-tooling-wei.yaml
+      secret-prefix: "SSH_PRIVATE_KEY_TOOLING_"
+    secrets: inherit # pass all secrets
 
   mrsquaare-gha-git-sync:
     name: Sync Guillaume Bonnet GitHub Actions
-    runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        org:
-          - "${{ vars.BASE_URI_GH_TIACSYS_PRIVATE }}"
-        repo:
-          - ssh-setup
-        branch:
-          - "refs/heads/*"
-          - "refs/tags/*"
-
-    steps:
-      - name: Generate Secret String
-        run: |
-          varname_prefix="SSH_PRIVATE_KEY_TOOLING_"
-          varname_unique="$(echo '${{ matrix.repo }}' | tr '[:punct:]' '_' | tr '[:lower:]' '[:upper:]')"
-          varname_suffix=""
-          varname=${varname_prefix}${varname_unique}${varname_suffix}
-          echo "SECRET_STRING=${varname}" >> $GITHUB_ENV
-
-      - name: Sync Git Refspecs
-        uses: tiacsys/git-sync@v3
-        with:
-          source_repo: "${{ vars.BASE_URI_GH_MRSQUAARE_PUBLIC }}/${{ matrix.repo }}-action.git"
-          source_branch: "${{ matrix.branch }}"
-          destination_repo: "${{ matrix.org }}/${{ matrix.repo }}.git"
-          destination_branch: "${{ matrix.branch }}"
-          ssh_private_key: "${{ secrets[env.SECRET_STRING] }}"
+    uses: tiacsys/github-workflows/.github/workflows/git-sync.yml@v2
+    with:
+      matrix: ./.github/git-sync-tooling-mrsquaare-gha.yaml
+      secret-prefix: "SSH_PRIVATE_KEY_TOOLING_"
+      from-repo-suffix: "-action"
+    secrets: inherit # pass all secrets

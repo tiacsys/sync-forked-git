@@ -1,0 +1,9 @@
+to:
+  - git@github.com:tiacsys
+from:
+  - https://github.com/zephyrproject-rtos
+repo:
+  - zephyr-setup
+refspec:
+  - "refs/heads/*"
+  - "refs/tags/*"
