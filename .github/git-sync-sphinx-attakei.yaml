@@ -1,0 +1,9 @@
+to:
+  - git@github.com:tiacsys
+from:
+  - https://github.com/attakei
+repo:
+  - sphinx-revealjs
+refspec:
+  - "refs/heads/*"
+  - "refs/tags/*"

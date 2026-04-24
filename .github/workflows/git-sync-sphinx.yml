@@ -11,73 +11,22 @@ on:
 jobs:
   attakei-git-sync:
     name: Sync Kazuya Takei
-    runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        org:
-          - "${{ vars.BASE_URI_GH_TIACSYS_PRIVATE }}"
-        repo:
-          - sphinx-revealjs
-        branch:
-          - master
-          - next
-          - "refs/tags/*"
-
-    steps:
-      - name: Generate Secret String
-        run: |
-          varname_prefix="SSH_PRIVATE_KEY_"
-          varname_unique="$(echo '${{ matrix.repo }}' | tr '[:punct:]' '_' | tr '[:lower:]' '[:upper:]')"
-          varname_suffix=""
-          varname=${varname_prefix}${varname_unique}${varname_suffix}
-          echo "SECRET_STRING=${varname}" >> $GITHUB_ENV
-
-      - name: Sync Git Refspecs
-        uses: tiacsys/git-sync@v3
-        with:
-          source_repo: "${{ vars.BASE_URI_GH_ATTAKEI_PUBLIC }}/${{ matrix.repo }}.git"
-          source_branch: "${{ matrix.branch }}"
-          destination_repo: "${{ matrix.org }}/${{ matrix.repo }}.git"
-          destination_branch: "${{ matrix.branch }}"
-          ssh_private_key: "${{ secrets[env.SECRET_STRING] }}"
+    uses: tiacsys/github-workflows/.github/workflows/git-sync.yml@v2
+    with:
+      matrix: ./.github/git-sync-sphinx-attakei.yaml
+      secret-prefix: "SSH_PRIVATE_KEY_"
+    secrets: inherit # pass all secrets
 
   attakei-git-rebase:
     name: Rebase Kazuya Takei
-    runs-on: ubuntu-latest
 
-    needs: attakei-git-sync
+    needs:
+      - attakei-git-sync
 
-    strategy:
-      matrix:
-        org:
-          - "${{ vars.BASE_URI_GH_TIACSYS_PRIVATE }}"
-        repo:
-          - sphinx-revealjs
-        branch:
-          - toctree
-
-    steps:
-      - name: Generate Secret String
-        run: |
-          varname_prefix="SSH_PRIVATE_KEY_"
-          varname_unique="$(echo '${{ matrix.repo }}' | tr '[:punct:]' '_' | tr '[:lower:]' '[:upper:]')"
-          varname_suffix=""
-          varname=${varname_prefix}${varname_unique}${varname_suffix}
-          echo "SECRET_STRING=${varname}" >> $GITHUB_ENV
-
-      - name: Generate Prefix String
-        run: |
-          varname_prefix="GIT_REBASE_"
-          varname_unique="$(echo '${{ matrix.org }}' | tr '[:punct:]' '_' | tr '[:lower:]' '[:upper:]')"
-          varname_suffix="_BRANCH_PREFIX"
-          varname=${varname_prefix}${varname_unique}${varname_suffix}
-          echo "PREFIX_STRING=${varname}" >> $GITHUB_ENV
-
-      - name: Rebase Custodians
-        uses: tiacsys/git-rebase@v1
-        with:
-          repo: "${{ matrix.org }}/${{ matrix.repo }}.git"
-          source_branch: "${{ matrix.branch }}"
-          destination_branch: "master"
-          ssh_private_key: "${{ secrets[env.SECRET_STRING] }}"
+    uses: tiacsys/github-workflows/.github/workflows/git-rebase.yml@v2
+    with:
+      matrix: ./.github/git-rebase-sphinx-attakei.yaml
+      secret-prefix: "SSH_PRIVATE_KEY_"
+      refspec-prefix: "toctree"
+    secrets: inherit # pass all secrets
