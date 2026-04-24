@@ -1,0 +1,6 @@
+on:
+  - git@github.com:tiacsys
+repo:
+  - ubxlib
+refspec:
+  - master

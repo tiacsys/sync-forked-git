@@ -1,0 +1,9 @@
+to:
+  - git@github.com:tiacsys
+from:
+  - https://github.com/u-blox
+repo:
+  - ubxlib
+refspec:
+  - master
+  - "refs/tags/*"
