@@ -4,6 +4,7 @@ repo:
   - cannectivity
 refspec:
   - main
+  - v1.4-branch
   - v1.3-branch
   - v1.2-branch
   - v1.1-branch
