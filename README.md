@@ -86,9 +86,11 @@ Sync forked Git repositories with their origin.
 
 ---
 
-## [robot2rst](https://github.com/melexis/robot2rst)
+## Melexis Open Source Team
 
-[![Sync robot2rst Project Forks](https://github.com/tiacsys/sync-forked-git/actions/workflows/git-sync-robot2rst.yml/badge.svg)](https://github.com/tiacsys/sync-forked-git/actions/workflows/git-sync-robot2rst.yml)
+[![Sync Melexis Forks](https://github.com/tiacsys/sync-forked-git/actions/workflows/git-sync-melexis.yml/badge.svg)](https://github.com/tiacsys/sync-forked-git/actions/workflows/git-sync-melexis.yml)
+
+### [robot2rst](https://github.com/melexis/robot2rst)
 
 - *from:* https://github.com/melexis/robot2rst
 
@@ -99,11 +101,7 @@ Sync forked Git repositories with their origin.
   > traceable items. This allows you to connect your
   > requirements to test cases.
 
----
-
-## [xunit2rst](https://github.com/melexis/xunit2rst)
-
-[![Sync xunit2rst Project Forks](https://github.com/tiacsys/sync-forked-git/actions/workflows/git-sync-xunit2rst.yml/badge.svg)](https://github.com/tiacsys/sync-forked-git/actions/workflows/git-sync-xunit2rst.yml)
+### [xunit2rst](https://github.com/melexis/xunit2rst)
 
 - *from:* https://github.com/melexis/xunit2rst
 
